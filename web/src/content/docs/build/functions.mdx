@@ -1,0 +1,45 @@
+---
+title: 04 · Give your code a job
+description: Organize the working quiz into functions with parameters and return values.
+---
+import Checkpoint from '../../../components/Checkpoint.astro';
+import { Code } from '@astrojs/starlight/components';
+import code from '../../../examples/04-functions/quiz.txt?raw';
+
+Your quiz already runs. Now you'll give groups of statements names so you can see what each part does.
+
+## Define and call a function
+
+A **function** is a named group of instructions. `def` defines one; calling its name with parentheses runs it. A **parameter** is a name for an input to the function. An **argument** is the value supplied in a call.
+
+Try this in `scratch.py`:
+
+```python title="workshop/scratch.py"
+def make_greeting(name):
+    return "Hi, " + name + "!"
+
+message = make_greeting("Alex")
+print(message)
+```
+
+`name` is the parameter. `"Alex"` is the argument. `return` sends the finished string back to the caller and ends that function call. It does not print it. The output appears only when `print(message)` runs. A function without an explicit return value returns `None`.
+
+## Organize the working quiz
+
+Keep `questions.py` as it is. Replace the whole `quiz.py` file with this version:
+
+<Code code={code} lang="python" title="workshop/quiz.py" />
+
+`ask_question(question)` prints and validates one question, then returns the selected letter. `award_points(scores, clusters)` updates the dictionary it receives. Dictionaries are mutable, so the changes remain visible to `run_quiz()` without a return statement.
+
+`run_quiz()` connects those jobs. Read its question loop aloud: ask, look up the selected choice, award its points. The work inside these functions is the same work you just ran in the previous milestone.
+
+The last two lines use Python's entry-point check. When you run `quiz.py` directly, `__name__` is `"__main__"`, so it calls `run_quiz()`. If another file imports `quiz`, the definitions load without starting the interactive questions.
+
+## Run and check
+
+Run the file and answer `a` seven times. You should still get one point for every cluster. Moving code into functions should preserve the result.
+
+Try changing the greeting inside `run_quiz()`. Names assigned inside a function are usually local to that function. The [follow-up guide](../../next/#functions-and-scope) has a small exercise on scope.
+
+<Checkpoint id="04-functions" />

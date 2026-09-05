@@ -1,0 +1,6 @@
+---
+import mapping from "../../../checkpoints.json";
+---
+<table><thead><tr><th>Checkpoint</th><th>Lesson</th><th>What runs</th></tr></thead><tbody>
+{mapping.map(item => <tr><td><a href={`https://github.com/yanicells/misa-python-workshop/tree/${item.id}/workshop`}>{item.id}</a></td><td><a href={`${import.meta.env.BASE_URL.replace(/\/$/,'')}/${item.lesson}/`}>{item.lesson}</a></td><td>{item.expected}</td></tr>)}
+</tbody></table>

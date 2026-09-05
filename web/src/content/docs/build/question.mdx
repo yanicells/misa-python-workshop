@@ -1,0 +1,50 @@
+---
+title: 02 · Ask one question
+description: Read a choice, validate it, and select a response with if, elif, and else.
+---
+import Checkpoint from '../../../components/Checkpoint.astro';
+import { Code } from '@astrojs/starlight/components';
+import code from '../../../examples/02-question/quiz.txt?raw';
+
+You'll ask one question and tell the player which cluster earns a point. We'll store scores in the next milestone.
+
+## Read an answer
+
+`input()` pauses and returns what the player typed as a string. Even if they type `2`, Python receives `"2"`. Our answers are letters, so we can keep them as strings.
+
+A **method** is an operation called on a value using a dot. `strip()` removes whitespace at the ends; `lower()` changes uppercase letters to lowercase. This lets ` A ` count as `a`.
+
+## Choose which lines run
+
+Replace the whole `workshop/quiz.py` file with:
+
+<Code code={code} lang="python" title="workshop/quiz.py" />
+
+`while` repeats its indented block as long as its condition is true. `answer not in ["a", "b", "c"]` checks that the answer is absent from the list of allowed letters. Asking again inside the loop gives the player a way to leave it.
+
+`if` checks the first condition. `elif` checks another condition if the first was false. `else` handles the remaining valid answer. Exactly one of these three bodies runs. `==` compares values; `=` assigns one.
+
+The colon starts a block. Indent the lines belonging to that block by four spaces. Align `elif` and `else` with `if`. Indentation tells Python which statements belong together.
+
+## Run and check
+
+Save and run the file. Try `z`, then ` A `. You should see a retry message, then `eServs earns 1 point.` Try `b` and `c` on separate runs too.
+
+Input is the answer. Processing is validation and the condition. Output is the point message.
+
+## Combine conditions
+
+Replace the contents of `scratch.py` with this small prediction check:
+
+```python title="workshop/scratch.py"
+answer = "a"
+ready = True
+print(answer == "a" and ready)
+print(answer == "b" or answer == "a")
+print(not ready)
+print(2 != 3, 2 < 3, 2 <= 2, 3 > 2, 3 >= 3)
+```
+
+The first three lines print `True`, `True`, and `False`. All five comparisons on the last line print `True`. For boolean values, `and` requires both sides to be true; `or` requires at least one; `not` reverses the value.
+
+<Checkpoint id="02-question" />

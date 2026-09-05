@@ -1,0 +1,54 @@
+---
+title: Checkpoints and safe recovery
+description: Return to a working reference without losing your own quiz edits.
+---
+import CheckpointTable from '../../components/CheckpointTable.astro';
+
+Keep building on `my-quiz` during the lesson. You don't need to change branches at every milestone.
+
+## Find a working reference
+
+<CheckpointTable />
+
+Every checkpoint is a complete reference state. Its quiz runs from `workshop` using `python3 quiz.py` on macOS or `py quiz.py` on Windows. The website and guides stay available on each branch.
+
+## Save your work first
+
+Run these commands from `workshop`. Saving a file in your editor is necessary before staging it. A commit can preserve unfinished or broken code too.
+
+```bash
+git branch --show-current
+git status
+git add .
+git commit -m "Save my quiz before using a checkpoint"
+git status
+```
+
+Write down the branch name printed by the first command. `git add .` stages files under the current folder, including your scratch file. Check the status list and make sure it contains only files you mean to save. If Git says there is nothing to commit and the tree is clean, continue. If the final status still lists changes outside `workshop`, ask a helper to preserve those too before switching.
+
+## Start a recovery branch
+
+For example, to recover to the completed loop milestone:
+
+```bash
+git fetch origin
+git checkout -b recovery-loops origin/03-loops
+```
+
+Use a new name such as `recovery-loops-2` if you already created `recovery-loops`. This starts a local branch at the reference checkpoint. It does not merge your customized text into the reference files. You can continue your edits there or copy a small change from your saved version with a helper.
+
+To return to your earlier version, commit any new work on the recovery branch, then:
+
+```bash
+git checkout my-quiz
+```
+
+Replace `my-quiz` with the branch name you wrote down if it was different. Your saved commit remains on that branch. Don't use force checkout, hard reset, or file deletion to get past a warning.
+
+## Copy instead of switching
+
+Each milestone has a **Full working files** section. Before replacing a file, commit your edits as above or save a separate copy outside the repository. Then copy the reference block. This changes your current file, so you must save and run it again.
+
+## Notebook checkpoints
+
+The [Colab notebook](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/05-results/workshop/misa-quiz.ipynb) uses the same checkpoint names. Save your own Drive copy and follow the cells in order. A checkpoint code cell is a full runnable version of that milestone, so rerunning it resets that version's scores.

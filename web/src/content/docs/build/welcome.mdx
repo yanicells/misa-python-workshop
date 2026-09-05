@@ -1,0 +1,72 @@
+---
+title: 01 · Make it yours
+description: Edit a greeting, run your first Python file, and save a Git commit.
+---
+import Checkpoint from '../../../components/Checkpoint.astro';
+
+You'll make the starter greet you by name, then save that working version. Keep editing on `my-quiz`; checkpoint branches are there only when you need help recovering.
+
+## Write your greeting
+
+Replace all of `workshop/quiz.py` with this block. Change `Alex` to your name.
+
+```python title="workshop/quiz.py"
+# Change the name to your own.
+name = "Alex"
+print("Hi, " + name + "!")
+print("Let's find a MISA cluster you might enjoy.")
+```
+
+`name` is a variable: a name bound to a value. `=` assigns the value on its right. The quoted text is a **string**. The `+` signs join strings, and `print()` writes text to the terminal. Text after `#` is a comment; Python doesn't execute it.
+
+Save the file. Run `python3 quiz.py` on macOS or `py quiz.py` on Windows from the `workshop` folder.
+
+```text title="Expected output, before changing Alex"
+Hi, Alex!
+Let's find a MISA cluster you might enjoy.
+```
+
+Python runs the file top to bottom. Changing the saved file does not change a program that's already running: run it again to see the edit.
+
+## A quick check on values
+
+Use a separate `scratch.py` file in `workshop` for short experiments. Run it with `python3 scratch.py` or `py scratch.py`. These lines show the four types we'll use:
+
+```python title="workshop/scratch.py"
+name = "Alex"       # str: text
+points = 2          # int: a whole number
+share = 12.5        # float: a number with a decimal part
+ready = True        # bool: True or False
+print(type(name), type(points), type(share), type(ready))
+print("2" + "3")
+print(int("2") + 3)
+print(float("2.5"))
+print(str(points) + " points")
+```
+
+The first line of output names `str`, `int`, `float`, and `bool`. The remaining lines print `23`, `5`, `2.5`, and `2 points`. Quotes matter: `"2"` is text, while `2` is a number. `int()`, `float()`, and `str()` convert values. `int("hello")` raises `ValueError` because that text isn't an integer.
+
+An **expression**, like `points + 1`, produces a value. A **statement**, like `points = points + 1`, tells Python to do something with it.
+
+## Save a working version
+
+Git commits are a little like named points in Google Docs version history. Git records only what you stage and commit; it doesn't automatically record every edit or upload it.
+
+From the `workshop` folder:
+
+```bash
+git status
+git add quiz.py
+git commit -m "Personalize my quiz greeting"
+```
+
+`status` shows changes. `add` stages the saved contents of a file for the next commit. `commit` records that staged snapshot locally. If you edit again after staging, stage again to include the newer edit.
+
+```text title="What the commands do"
+Working files  →  Staging area  →  Local commit  →  GitHub repository
+     save            git add        git commit        git push
+```
+
+GitHub is a place to share repositories, a little like a shared Drive location. Your local commits stay on your computer until you explicitly push them. We'll leave publishing for [after the build](../../next/#publish-your-own-quiz).
+
+<Checkpoint id="01-welcome" />

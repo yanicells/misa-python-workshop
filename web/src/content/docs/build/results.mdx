@@ -1,0 +1,60 @@
+---
+title: 05 · Show your results
+description: Calculate shares of quiz points, sort scores, and display dense ranks including ties.
+---
+import Checkpoint from '../../../components/Checkpoint.astro';
+import { Code } from '@astrojs/starlight/components';
+import code from '../../../examples/05-results/quiz.txt?raw';
+
+You'll turn the score dictionary into readable results with descriptions. Keep the raw points for ranking; calculate percentages only for display.
+
+## Calculate a share of points
+
+A cluster's percentage is its points divided by all points awarded, multiplied by 100. If a choice gives two clusters a point, both points count toward the total.
+
+```python title="Try in workshop/scratch.py"
+points = 3
+total_points = 10
+percentage = points / total_points * 100
+print(f"{percentage:.1f}% of quiz points")
+```
+
+It prints `30.0% of quiz points`. `/` divides and produces a float here. The `f` before the quote creates an f-string, which inserts expressions inside braces. `:.1f` displays one digit after the decimal point. This doesn't change the raw score.
+
+For the other arithmetic operators, try:
+
+```python title="Try in workshop/scratch.py"
+print(7 + 2, 7 - 2, 7 * 2, 7 / 2)
+print(7 // 2, 7 % 2, 2 ** 3)
+print((7 + 2) * 2)
+```
+
+The lines print `9 5 14 3.5`, `3 1 8`, and `18`. `//` gives floor division, `%` gives the remainder, and `**` raises to a power. Parentheses control which calculation happens first.
+
+## Sort by score
+
+`sorted()` makes an ordered list. We'll pass it the score dictionary, which supplies cluster names. `key=score_for_cluster` tells it which function to call to get each name's sorting value. We pass the function itself, without parentheses. `reverse=True` puts higher scores first.
+
+The small `score_for_cluster` function sits inside `show_results` so it can read that call's `scores`. This is a use of enclosing scope. We don't write our own sorting algorithm.
+
+## Keep ties together
+
+We show the top three **distinct positive score levels**, also called dense ranks. Scores `5, 4, 3, 3, 2` receive ranks `1, 2, 3, 3, 4`. Both clusters with 3 points appear. Clusters with zero points don't appear.
+
+`previous_score` remembers the last score. A different score advances the rank by one. `None` means there isn't a previous score yet. `break` exits the nearest loop when there are no positive scores left or the next rank is beyond three.
+
+A separate loop counts clusters with the same score, so every member of a tie gets a `(tied)` label. We compare raw points, not rounded percentages. Two different scores may both display as `33.3%` without being tied.
+
+## Add the results function
+
+Keep `questions.py` unchanged. In `quiz.py`, add `show_results` before `run_quiz`, and replace `print(scores)` in `run_quiz` with `show_results(scores)`. The complete file below shows exactly where both changes belong. You can replace the whole file if that's easier.
+
+<Code code={code} lang="python" title="workshop/quiz.py" />
+
+The zero-total check returns before division. There is no percentage to calculate when nobody has earned points.
+
+## Run and check
+
+Answer `a` seven times. All seven clusters share rank 1 and show `14.3% of quiz points`. Seeing seven results is correct: all seven are tied at a displayed rank. Rounding can make these displayed percentages add to `100.1%`. In other runs, the top three score levels may omit lower scores, so the displayed subset need not sum to 100%.
+
+<Checkpoint id="05-results" />

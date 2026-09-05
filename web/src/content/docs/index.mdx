@@ -1,0 +1,47 @@
+---
+title: A quiz you can call your own
+description: Build a MISA cluster personality quiz while learning your first Python and Git commands.
+---
+
+<div class="workshop-intro">
+  <p>A Python workshop for first-year BS MIS students.<br />With Yani, Gabe, and the MISA helpers.</p>
+  <img src={`${import.meta.env.BASE_URL}/assets/misabot.png`} alt="MISA's smiling robot mascot" width="100" height="100" />
+</div>
+
+You'll write a program that asks about the things you enjoy doing, adds points to MISA clusters, and shows your results. Then you can change a question and let a friend try it.
+
+You don't need to know Python yet. Bring your laptop, and keep this guide open beside your editor. We have a [browser fallback](./setup/#use-colab-if-setup-gets-in-the-way) if local setup gets in the way.
+
+## What we're making
+
+Your finished quiz asks seven questions. There are no right answers. A choice adds one point to one or two clusters. Results show the top three score levels, including ties.
+
+```text title="A sample result"
+1. Events (tied) | 25.0% of quiz points
+You might enjoy planning programs and sorting out event logistics.
+1. HR (tied) | 25.0% of quiz points
+You might enjoy helping members get to know each other.
+```
+
+The percentages describe the points your answers earned. This is a conversation starter about MISA, not a personality assessment or an application result.
+
+## How we'll build it
+
+| Part | What you'll have working |
+| --- | --- |
+| [Make it yours](./build/welcome/) | A greeting with your name |
+| [Ask one question](./build/question/) | A choice that retries when the input is invalid |
+| [Loop through answers](./build/loops/) | Seven questions and a score for each cluster |
+| [Give your code a job](./build/functions/) | Small functions you can read and reuse |
+| [Show your results](./build/results/) | Percentages and tied ranks |
+| [Test and personalize](./build/test/) | Your own quiz, saved in Git |
+
+The whole session is planned for 70 to 90 minutes, including introductions and closing. That's a pacing target; helpers can point you to a working checkpoint when you need one.
+
+## Input, process, output
+
+**Input:** you type an answer. **Process:** Python updates the cluster scores. **Output:** the terminal shows your results. We'll return to these steps whenever the code gets longer.
+
+Saving your file, recording a Git commit, and publishing to GitHub are separate actions. You'll practice the first two as you build.
+
+[Start with setup →](./setup/)

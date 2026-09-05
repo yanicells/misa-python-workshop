@@ -1,0 +1,9 @@
+web/node_modules/
+web/dist/
+web/.astro/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+work/

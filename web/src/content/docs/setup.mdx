@@ -1,0 +1,81 @@
+---
+title: Get ready to run Python
+description: Install your tools, run the starter, or use the matching Colab notebook.
+---
+import Checkpoint from '../../components/Checkpoint.astro';
+
+## Before the workshop
+
+Install [Python](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads), and [VS Code](https://code.visualstudio.com/download). VS Code is where you'll edit text. Python runs it. Git records versions of your work. You can use another editor if you already have one.
+
+Open a terminal. In VS Code, choose **Terminal → New Terminal**. A terminal accepts commands; press Enter after each line. If you see Python's `>>>` prompt, type `exit()` to return to your terminal before running shell commands.
+
+On Windows, check:
+
+```powershell
+py --version
+git --version
+```
+
+On macOS, check:
+
+```bash
+python3 --version
+git --version
+```
+
+You need Python 3.10 or newer. The quiz uses only Python's standard library. Students do not need Node.js or the website dependencies.
+
+Create a [GitHub account](https://github.com/signup) before the event if you want to publish your work later. Cloning a public repository doesn't require an account.
+
+## Get the project
+
+If you already cloned the repo, open that folder and skip the clone command. Otherwise, use `cd` to go to a folder where you keep projects, then run:
+
+```bash
+ git clone https://github.com/yanicells/misa-python-workshop.git
+ cd misa-python-workshop
+ git checkout 00-start
+ git checkout -b my-quiz
+ cd workshop
+```
+
+`clone` downloads the repository and its history. A branch names a line of work. `00-start` is our prepared starting point. `my-quiz` is your own branch, where you will make and commit changes. These commands keep you on a named branch rather than a detached commit.
+
+Open the repository folder in VS Code with **File → Open Folder**. Select `workshop/quiz.py`. On macOS, run:
+
+```bash
+python3 quiz.py
+```
+
+On Windows:
+
+```powershell
+py quiz.py
+```
+
+You should see `Your MISA quiz starts here.` If the command fails, go to [troubleshooting](../help/) or use Colab below.
+
+<Checkpoint id="00-start" />
+
+## Use Colab if setup gets in the way
+
+[Open the workshop notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/05-results/workshop/misa-quiz.ipynb).
+
+1. Sign in to Google and choose **File → Save a copy in Drive**. Edit your copy.
+2. Read the cell marked `00-start`, then run its code cell using the play button or Shift+Enter.
+3. Follow the matching milestone in this guide. Each notebook milestone has a complete code cell. Run one milestone at a time, from top to bottom.
+4. When a cell asks a question, type into its input box. Wait until it finishes before starting another cell.
+
+Colab runs Python on a hosted computer. You can do the same Python edits there, but you'll skip local Git practice for now. The notebook includes the question data, so you don't need to upload files or install packages. Save the notebook to keep your edits, and download an `.ipynb` copy if you want a local backup.
+
+## If Git needs your name
+
+Before your first commit, configure the name and email you want attached to this repository's commits:
+
+```bash
+git config user.name "Your Name"
+git config user.email "YOUR_GITHUB_NOREPLY_EMAIL"
+```
+
+Replace the email text with the private commit email from your [GitHub email settings](https://github.com/settings/emails), or an email you're comfortable using. These settings identify commits; they don't sign you in.

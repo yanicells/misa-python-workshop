@@ -1,0 +1,18 @@
+---
+import mapping from '../../../checkpoints.json';
+import { Code } from '@astrojs/starlight/components';
+const { id } = Astro.props;
+const checkpoint = mapping.find(item => item.id === id);
+if (!checkpoint) throw new Error(`Unknown checkpoint: ${id}`);
+const examples = import.meta.glob('../examples/**/*.txt', { query:'?raw', import:'default', eager:true });
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<aside aria-label="Checkpoint information">
+<p><strong>Recovery checkpoint:</strong> <a href={`https://github.com/yanicells/misa-python-workshop/tree/${id}/workshop`}>{id}</a>. <a href={`${base}/checkpoints/`}>Save your work before switching.</a></p>
+<p>Run from <code>workshop</code>: <code>{checkpoint.run}</code> on macOS, or <code>py quiz.py</code> on Windows.</p>
+</aside>
+<details>
+<summary>Full working files for {id}</summary>
+<p>Replace the entire named file with its block. Keep both files in the same folder when a question bank is included.</p>
+{checkpoint.files.map(file => <Code code={String(examples[`../examples/${id}/${file.replace('.py','.txt')}`])} lang="python" title={`workshop/${file}`} />)}
+</details>

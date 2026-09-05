@@ -1,0 +1,8 @@
+[
+ {"id":"00-start","lesson":"setup","files":["quiz.py"],"run":"python3 quiz.py","expected":"Your MISA quiz starts here."},
+ {"id":"01-welcome","lesson":"build/welcome","files":["quiz.py"],"run":"python3 quiz.py","expected":"Hi, Alex!"},
+ {"id":"02-question","lesson":"build/question","files":["quiz.py"],"run":"python3 quiz.py","expected":"eServs earns 1 point."},
+ {"id":"03-loops","lesson":"build/loops","files":["quiz.py","questions.py"],"run":"python3 quiz.py","expected":"{'COMMS': 1, 'OSG': 1, 'MKT': 1, 'OET': 1, 'Events': 1, 'eServs': 1, 'HR': 1}"},
+ {"id":"04-functions","lesson":"build/functions","files":["quiz.py","questions.py"],"run":"python3 quiz.py","expected":"{'COMMS': 1, 'OSG': 1, 'MKT': 1, 'OET': 1, 'Events': 1, 'eServs': 1, 'HR': 1}"},
+ {"id":"05-results","lesson":"build/results","files":["quiz.py","questions.py"],"run":"python3 quiz.py","expected":"1. COMMS (tied) | 14.3% of quiz points"}
+]

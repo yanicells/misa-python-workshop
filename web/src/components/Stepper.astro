@@ -1,0 +1,36 @@
+---
+const { kind = 'loop' } = Astro.props;
+const lines = kind === 'loop'
+ ? ['clusters = ["COMMS", "HR"]', 'for cluster in clusters:', '    print(cluster)']
+ : ['clusters = ["Events", "OSG"]', 'for cluster in clusters:', '    scores[cluster] += 1'];
+---
+<misa-stepper data-kind={kind} class="stepper" style="display:block">
+<p><strong>{kind === 'loop' ? 'Watch a loop run' : 'Watch one answer award two points'}</strong></p>
+{kind === 'score' && <p>Selected answer: "Put the schedule and room requirements in one document." Both scores start at zero.</p>}
+<pre aria-label="Python demonstration"><code>{lines.map((line,index) => <span data-line={index}>{line}</span>)}</code></pre>
+<p data-state role="status" aria-live="polite">Ready. Press Step to assign the first item.</p>
+<pre data-output aria-label={kind === 'loop' ? 'Accumulated output' : 'Current scores'}>{kind === 'loop' ? 'Output: (empty)' : 'Events: 0 · OSG: 0 · Total: 0'}</pre>
+<button type="button" data-step>Step</button><button type="button" data-reset>Reset</button>
+<noscript>This example needs JavaScript for stepping. Read the equivalent trace below.</noscript>
+</misa-stepper>
+<script>
+import {loopState,scoreState} from '../lib/steppers.mjs';
+class MisaStepper extends HTMLElement {
+ connectedCallback() {
+  let step = 0;
+  const advance = this.querySelector<HTMLButtonElement>('[data-step]')!;
+  const reset = this.querySelector<HTMLButtonElement>('[data-reset]')!;
+  const render = () => {
+   const state = this.dataset.kind === 'score' ? scoreState(step) : loopState(step);
+   this.querySelectorAll<HTMLElement>('[data-line]').forEach(line => line.classList.toggle('current', step>0 && Number(line.dataset.line)===state.line));
+   this.querySelector('[data-state]')!.textContent = step===0 ? 'Ready. Press Step to assign the first item.' : state.done ? `Done. No items remain. cluster still holds ${state.cluster}.` : `Step ${step} of 5. Line ${state.line+1}. cluster = "${state.cluster}".`;
+   this.querySelector('[data-output]')!.textContent = 'output' in state ? `Output:\n${state.output?.join('\n') || '(empty)'}` : `Events: ${state.scores?.Events} · OSG: ${state.scores?.OSG} · Total: ${state.total}`;
+   advance.disabled = state.done;
+  };
+  advance.addEventListener('click',()=>{step++;render();});
+  reset.addEventListener('click',()=>{step=0;render();});
+  render();
+ }
+}
+if (!customElements.get('misa-stepper')) customElements.define('misa-stepper',MisaStepper);
+</script>
