@@ -20,7 +20,9 @@ def run(*args, cwd=ROOT, input=None, env=None):
 
 branches = run('git', 'branch', '--format=%(refname:short)').split()
 assert set(branches) == {'main', *(item['id'] for item in MAPPING)}, branches
-paths = run('git', 'rev-list', '--objects', '--all')
+# Codex may keep private turn-diff refs in the local repository. They are not
+# part of the public release, so audit only local and remote branch refs.
+paths = run('git', 'rev-list', '--objects', '--branches', '--remotes')
 assert not any(' notes/' in line or 'session-02-python' in line for line in paths.splitlines())
 main_files = run('git', 'ls-tree', '-r', '--name-only', 'main').splitlines()
 assert not any(name in main_files for name in ['workshop/quiz.py','workshop/questions.py','workshop/misa-quiz.ipynb'])
