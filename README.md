@@ -37,12 +37,12 @@ Use Node.js 24 or newer:
 
 ```bash
 cd web
-npm ci
-npm run dev
-npm run check
-npm run build
+pnpm install
+pnpm dev
+pnpm check
+pnpm build
 ```
 
-The Markdown and MDX lessons are under `web/src/content/docs`. `web/src/examples` holds text sources displayed as instructional code and used to generate checkpoints; students edit only `workshop` files. `checkpoints.json` defines checkpoint names, routes, files, run commands, and expected behavior.
+The Markdown and MDX lessons are under `web/src/content/docs`. `web/src/examples` holds text sources displayed as instructional code and used to generate checkpoints; students edit only `workshop` files. `web/src/data/checkpoints.json` defines checkpoint names, routes, files, run commands, and expected behavior.
 
 The workshop website is intended for Vercel, but this repository does not deploy it automatically. Yani will connect and deploy the project separately. When that happens, use `web` as the Vercel project root and add the final public URL to these guides.
