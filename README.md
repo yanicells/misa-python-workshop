@@ -2,7 +2,7 @@
 
 Build a MISA cluster personality quiz with Python and Git. This workshop is for first-year BS MIS students starting programming.
 
-[Workshop guide](https://yanicells.github.io/misa-python-workshop/) · [Setup and Colab](https://yanicells.github.io/misa-python-workshop/setup/) · [Recovery](https://yanicells.github.io/misa-python-workshop/checkpoints/)
+[Website source](web/) · [Setup and Colab](web/src/content/docs/setup.mdx) · [Recovery](web/src/content/docs/checkpoints.mdx)
 
 ## Get started
 
@@ -21,12 +21,12 @@ Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see `Your 
 <!-- CHECKPOINTS:START -->
 | Checkpoint | Lesson |
 | --- | --- |
-| [00-start](https://github.com/yanicells/misa-python-workshop/tree/00-start/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/setup/) |
-| [01-welcome](https://github.com/yanicells/misa-python-workshop/tree/01-welcome/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/build/welcome/) |
-| [02-question](https://github.com/yanicells/misa-python-workshop/tree/02-question/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/build/question/) |
-| [03-loops](https://github.com/yanicells/misa-python-workshop/tree/03-loops/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/build/loops/) |
-| [04-functions](https://github.com/yanicells/misa-python-workshop/tree/04-functions/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/build/functions/) |
-| [05-results](https://github.com/yanicells/misa-python-workshop/tree/05-results/workshop) | [Guide](https://yanicells.github.io/misa-python-workshop/build/results/) |
+| [00-start](https://github.com/yanicells/misa-python-workshop/tree/00-start/workshop) | [Guide](web/src/content/docs/setup.mdx) |
+| [01-welcome](https://github.com/yanicells/misa-python-workshop/tree/01-welcome/workshop) | [Guide](web/src/content/docs/build/welcome.mdx) |
+| [02-question](https://github.com/yanicells/misa-python-workshop/tree/02-question/workshop) | [Guide](web/src/content/docs/build/question.mdx) |
+| [03-loops](https://github.com/yanicells/misa-python-workshop/tree/03-loops/workshop) | [Guide](web/src/content/docs/build/loops.mdx) |
+| [04-functions](https://github.com/yanicells/misa-python-workshop/tree/04-functions/workshop) | [Guide](web/src/content/docs/build/functions.mdx) |
+| [05-results](https://github.com/yanicells/misa-python-workshop/tree/05-results/workshop) | [Guide](web/src/content/docs/build/results.mdx) |
 <!-- CHECKPOINTS:END -->
 
 [Open the matching notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/05-results/workshop/misa-quiz.ipynb) and save a copy in Drive. It follows the same Python milestones without local Git setup.
@@ -45,6 +45,4 @@ npm run build
 
 The Markdown and MDX lessons are under `web/src/content/docs`. `web/src/examples` holds text sources displayed as instructional code and used to generate checkpoints; students edit only `workshop` files. `checkpoints.json` defines checkpoint names, routes, files, run commands, and expected behavior.
 
-GitHub Pages deployment is configured in `.github/workflows/pages.yml` and runs on `main` only. In repository settings, select GitHub Actions as the Pages source. A release maintainer must publish the clean main and checkpoint branches before these public links are ready.
-
-See `facilitator/RELEASE.md` for release preparation and verification, and `facilitator/COVERAGE.md` for the topic map. The short introduction/closing deck is in `facilitator/intro-outro.pptx`.
+The workshop website is intended for Vercel, but this repository does not deploy it automatically. Yani will connect and deploy the project separately. When that happens, use `web` as the Vercel project root and add the final public URL to these guides.
