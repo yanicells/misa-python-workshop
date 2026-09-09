@@ -7,6 +7,7 @@ export default defineConfig({
     favicon: '/assets/misa-mark.svg',
     social: [{ icon: 'github', label: 'Workshop repository', href: 'https://github.com/yanicells/misa-python-workshop' }],
     customCss: ['./src/styles/custom.css'],
+    components: { Footer: './src/components/Footer.astro' },
     sidebar: [
       { label: 'Before you begin', items: [{label:'Welcome',slug:''},{label:'Setup and Colab',slug:'setup'}] },
       { label: 'Build your quiz', items: [
