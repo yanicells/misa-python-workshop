@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 export default defineConfig({
-  site: 'https://yanicells.github.io',
-  base: process.env.SITE_BASE || '/misa-python-workshop',
   integrations: [starlight({
     title: 'MISA · Python workshop',
     logo: { src: './public/assets/misa-mark.svg', replacesTitle: false },
