@@ -25,7 +25,7 @@ Implementation deliverables:
 - Root repository README and `/workshop/README.md` on `main`.
 - Equivalent Google Colab notebook fallback, linked from the website and learner README.
 - Pre-event setup/verification guide and short troubleshooting/recovery instructions.
-- Short introduction/outro slide deck; explanations and building stay on the website.
+- Introduction and closing material on the website. Any separate slide deck is managed outside this repository.
 - Moving-forward roadmap, tiny practice activities, and a few follow-up project specifications.
 - Publication-ready repository with temporary professor material removed from files and public history.
 
@@ -46,9 +46,9 @@ This is the `main` layout: no completed learner Python project on `main`. After 
 
 Choose a small, meaningful sequence of numbered descriptive checkpoint branches. `00-start` is the start; the final checkpoint branch contains the complete quiz. Finalize intermediate names and the final branch name during implementation, then use them consistently everywhere. Each checkpoint is a cumulative runnable milestone, not an independent exercise folder.
 
-Prefer a single clear entry script with only a small separate question-data file if that aids readability. Avoid package scaffolding and unnecessary abstractions. Use Python's standard library; no web server, database, accounts, APIs, or third-party Python dependencies in the required project. Keep facilitator checks outside the learner's main working files. Store the fallback notebook under `/workshop` on applicable checkpoint branches and link directly to the appropriate Colab version; do not place completed notebook solutions on `main`.
+Prefer a single clear entry script with only a small separate question-data file if that aids readability. Avoid package scaffolding and unnecessary abstractions. Use Python's standard library; no web server, database, accounts, APIs, or third-party Python dependencies in the required project. Keep maintainer checks outside the learner's main working files and add them to the repository only when they remain useful. Store the fallback notebook under `/workshop` on applicable checkpoint branches and link directly to the appropriate Colab version; do not place completed notebook solutions on `main`.
 
-All branches in a repository version the whole tree, not just `/workshop`. Preserve consistent website source/guides across the published checkpoint series, deploy only from `main`, and verify the final mapping before release. Keep complete final learner code off `main`'s current tree, while allowing the website's instructional code examples.
+All branches in a repository version the whole tree, not just `/workshop`. Preserve consistent website source/guides across the published checkpoint series. If Yani later connects the site to Vercel, production should use `main`; deployment remains outside this repository. Keep complete final learner code off `main`'s current tree, while allowing the website's instructional code examples.
 
 ## Quiz behavior
 
@@ -116,11 +116,11 @@ Recovery must preserve personal work. Teach committing relevant learner files be
 
 Colab follows the same Python milestones and behavior but does not require local Git practice. Document how to open/save a personal notebook copy and run cells in order. Keep the fallback useful if the local environment fails; do not teach a second parallel course.
 
-## Moving forward and short deck
+## Moving forward and presentation
 
 For remaining source-note concepts, provide a compact roadmap with purpose, checked resources, tiny examples or very small practice projects. Finish with a few achievable project specifications describing the outcome, scope, and concepts to practice. Include optional publishing/further Git, general tips, videos/resources, joining MISA, and sharing progress with friends, organizations, and facilitators.
 
-The separate deck is for presenter introductions, motivation/destination, and closing. The website carries instruction and hands-on steps. Do not duplicate all lessons into slides.
+Keep presenter introductions, motivation/destination, instruction, hands-on steps, and closing available through the website. If the workshop team creates a separate deck, manage it outside this repository and do not duplicate all lessons into slides.
 
 ## Temporary sources and publication cleanup
 
@@ -133,7 +133,7 @@ Before public release, remove `/notes` and any copies from the working tree **an
 1. Inspect the supplied repos, skill, private notes, and any available prior workshop material; produce a concise coverage map.
 2. Finalize question-data shape, original content, runnable milestones, and shared website/checkpoint mapping.
 3. Build the simplest working quiz, then develop learner checkpoints and website explanations together.
-4. Add the notebook, setup/recovery guides, moving-forward material, and short deck.
+4. Add the notebook, setup/recovery guides, moving-forward material, and introduction/closing website content.
 5. Apply the humanizer to all user-facing prose; verify cluster grounding and branding inputs.
 6. Rehearse from a fresh clone and each recovery checkpoint, using the website as the presenter guide.
 7. Prepare clean public history and validate every release branch before publication.
@@ -143,7 +143,7 @@ Acceptance checks:
 - Fresh clone → `00-start` → documented run succeeds without website dependencies.
 - `main` has the two READMEs and no completed learner project; final code is on the named final checkpoint branch.
 - Every checkpoint runs and matches its lesson, expected behavior, notebook milestone, and recovery instructions.
-- Validate scoring for single- and two-cluster awards, percentages, invalid input retry, ties spanning third rank, fewer positive ranks, and zero-score handling. Use small facilitator fixtures/manual checks; do not burden beginners with a test framework.
+- Validate scoring for single- and two-cluster awards, percentages, invalid input retry, ties spanning third rank, fewer positive ranks, and zero-score handling. Use small maintainer fixtures or manual checks; do not burden beginners with a test framework.
 - Validate question-bank scoring opportunities and confirm cluster descriptions against PMG context.
 - Test notebook execution from a clean runtime and local execution on supported workshop platforms.
 - Exercise recovery after a student's customization and confirm earlier work remains recoverable.
