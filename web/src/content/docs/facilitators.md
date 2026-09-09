@@ -3,9 +3,7 @@ title: For facilitators
 description: A pacing guide, demo instructions, and checks to run before teaching.
 ---
 
-[Download the introduction and closing deck](https://github.com/yanicells/misa-python-workshop/raw/refs/heads/main/facilitator/intro-outro.pptx).
-
-Use the website as the teaching surface. The short deck covers introductions and closing. Help students finish a personalized project, and let them copy full files when typing would make them miss the explanation.
+Use the website as the teaching surface, including introductions and closing. Help students finish a personalized project, and let them copy full files when typing would make them miss the explanation. Any separate presentation materials are managed outside this repository.
 
 ## Pacing target
 
@@ -44,7 +42,7 @@ for number in selected:
 
 Verify a fresh clone, all checkpoint commands, the final Colab link, and a saved personal notebook copy. Check Windows and macOS on actual laptops. Run the production site and test search, copy buttons, both themes, mobile navigation, and the steppers. Browser testing and Python checks in the repository help, but they don't replace a projector check or a timed rehearsal.
 
-`main` must hold the guide, not the completed learner project. Publish all six checkpoint branches before sharing setup commands. Deploy the website only from `main`. Release preparation must exclude the temporary teaching inputs from every public ref and from the build output.
+`main` must hold the guide, not the completed learner project. Publish all six checkpoint branches before sharing setup commands. If the site is connected to Vercel, use `main` for production; Yani handles that setup and deployment separately. Before sharing the repository, manually confirm that temporary teaching inputs are absent from every public branch and from the build output.
 
 ## During the build
 
