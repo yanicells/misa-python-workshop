@@ -6,7 +6,7 @@ Implement this plan together with `WORKSHOP_BUILD_PLAN.md`. These are build spec
 
 The workshop serves first-year BS Management Information Systems students who are starting programming. The entire event is 70–90 minutes, including introductions and closing. Finishing a personalized Python project is the priority. Explanation, Python edits, Git practice, and execution must be interwoven.
 
-The website is both the presenters' main teaching surface and a usable self-study guide afterward. A separate short deck handles introductions and closing. Students may type along, copy code, or recover through checkpoint branches.
+The website is both the presenters' main teaching surface and a usable self-study guide afterward. Any separate presentation materials are managed outside this repository. Students may type along, copy code, or recover through checkpoint branches.
 
 ### Human handoff checklist
 
@@ -22,7 +22,7 @@ Once these are supplied, the next agent should be able to implement both plans w
 - Use a static documentation architecture with Markdown-based content. Choose a maintained framework appropriate to that requirement; the visual reference does not mandate Next.js.
 - Students run Python in `/workshop`; they must not need Node.js or the website toolchain to participate.
 - No accounts, database, saved completion tracking, or full in-browser Python IDE. Colab is the execution fallback.
-- Choose suitable static hosting during implementation and document build/deployment configuration. Production deployment follows `main`, not learner checkpoint branches.
+- Keep the static site ready for a Vercel project rooted at `/web`. Yani owns the Vercel setup and deployment; do not add an automatic deployment workflow to this repository. Production should follow `main`, not learner checkpoint branches.
 
 ## Visual direction and navigation
 
@@ -99,7 +99,7 @@ Include GitHub publishing/further Git practice, general tips, suitable videos/re
 3. Implement navigation, search, copyable code, lesson templates, and visualization components.
 4. Author original lessons alongside executable project checkpoints and the notebook. Apply the humanizer to learner-facing text.
 5. Add setup/help and the moving-forward roadmap; verify references and remove placeholders once source inputs arrive.
-6. Rehearse the website as the teaching surface, correct pacing and code drift, and prepare hosting configuration.
+6. Rehearse the website as the teaching surface, correct pacing and code drift, and document Vercel readiness without deploying it.
 7. Complete the private-source cleanup specified in the workshop plan before public publication.
 
 ## Acceptance checks
