@@ -1,19 +1,217 @@
-:root { --sl-color-accent-low:#073f45; --sl-color-accent:#19aab1; --sl-color-accent-high:#9ce9e9; --sl-font: 'Segoe UI', system-ui, sans-serif; --sl-content-width:49rem; --sl-text-code:1rem; }
-:root[data-theme='light'] { --sl-color-accent-low:#d9f3f2; --sl-color-accent:#087a80; --sl-color-accent-high:#08565c; }
-html { scroll-padding-top:6rem; }
-h1 { letter-spacing:-.035em; }
-.sl-markdown-content { font-size:1.08rem; line-height:1.8; }
-.site-title img { height:2rem; width:auto; }
-.expressive-code { margin-block:1.6rem; }
-.workshop-intro { border-bottom:1px solid var(--sl-color-gray-5); padding:0 0 1.5rem; display:flex; gap:2rem; align-items:center; }
-.workshop-intro img { width:100px; height:100px; object-fit:contain; }
-.workshop-intro p { margin:0; }
-.stepper { border:1px solid var(--sl-color-gray-4); border-radius:8px; padding:1.25rem; margin-block:1.5rem; }
-.stepper button { background:var(--sl-color-accent-low); color:var(--sl-color-accent-high); border:1px solid var(--sl-color-accent); border-radius:5px; padding:.55rem 1rem; cursor:pointer; font:inherit; margin-right:.6rem; }
-.stepper button:disabled { opacity:.5; cursor:default; }
-.stepper pre { font-size:1rem; padding:1rem; white-space:pre-wrap; }
-.stepper .current { background:var(--sl-color-accent-low); color:var(--sl-color-accent-high); outline:1px solid var(--sl-color-accent); }
-.stepper code span { display:block; padding:0 .4rem; }
-:focus-visible { outline:3px solid var(--sl-color-accent); outline-offset:4px; }
-@media (max-width:600px) { .workshop-intro { gap:1rem; } .workshop-intro img { width:68px; height:68px; } }
-@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+:root {
+  --sl-color-accent-low: #073f45;
+  --sl-color-accent: #19aab1;
+  --sl-color-accent-high: #9ce9e9;
+  --sl-font: Inter, Aptos, 'Segoe UI', system-ui, sans-serif;
+  --workshop-font-display: 'Avenir Next', Inter, Aptos, 'Segoe UI', system-ui, sans-serif;
+  --workshop-toc-width: 13.5rem;
+  --sl-sidebar-width: 16rem;
+  --sl-content-width: 58rem;
+  --sl-content-pad-x: clamp(1.25rem, 2.6vw, 2.5rem);
+  --sl-text-h1: clamp(2.15rem, 3vw, 2.5rem);
+  --sl-text-h2: clamp(1.65rem, 2.2vw, 1.85rem);
+  --sl-text-h3: 1.35rem;
+  --sl-text-code: 0.925rem;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d9f3f2;
+  --sl-color-accent: #087a80;
+  --sl-color-accent-high: #08565c;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--workshop-font-display);
+  letter-spacing: -0.025em;
+}
+
+.sl-markdown-content {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.site-title {
+  font-family: var(--workshop-font-display);
+  letter-spacing: -0.02em;
+}
+
+.site-title img {
+  width: auto;
+  height: 2rem;
+}
+
+.expressive-code {
+  margin-block: 1.5rem;
+}
+
+.workshop-intro {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 0 0 1.5rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.workshop-intro img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.workshop-intro p {
+  margin: 0;
+}
+
+.stepper {
+  padding: 1.25rem;
+  margin-block: 1.5rem;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 8px;
+}
+
+.stepper button {
+  padding: 0.55rem 1rem;
+  margin-right: 0.6rem;
+  color: var(--sl-color-accent-high);
+  font: inherit;
+  cursor: pointer;
+  background: var(--sl-color-accent-low);
+  border: 1px solid var(--sl-color-accent);
+  border-radius: 5px;
+}
+
+.stepper button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.stepper pre {
+  padding: 1rem;
+  font-size: var(--sl-text-code);
+  white-space: pre-wrap;
+}
+
+.stepper .current {
+  color: var(--sl-color-accent-high);
+  background: var(--sl-color-accent-low);
+  outline: 1px solid var(--sl-color-accent);
+}
+
+.stepper code span {
+  display: block;
+  padding: 0 0.4rem;
+}
+
+/* Keep page-to-page movement lightweight, like turning to the next worksheet step. */
+.pagination-links {
+  gap: clamp(2rem, 8vw, 7rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--sl-color-hairline);
+}
+
+.pagination-links a {
+  gap: 0.75rem;
+  align-items: flex-end;
+  padding: 0.5rem 0;
+  color: var(--sl-color-gray-3);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pagination-links a:hover {
+  color: var(--sl-color-white);
+}
+
+.pagination-links a svg {
+  width: 1.15rem;
+  transition: transform 160ms ease;
+}
+
+.pagination-links a:hover[rel='prev'] svg {
+  transform: translateX(-0.2rem);
+}
+
+.pagination-links a:hover[rel='next'] svg {
+  transform: translateX(0.2rem);
+}
+
+.pagination-links .link-title {
+  color: var(--sl-color-white);
+  font-family: var(--workshop-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sl-color-accent);
+  outline-offset: 4px;
+}
+
+@media (min-width: 50rem) {
+  /* Search belongs with the page utilities, immediately before GitHub. */
+  .header > .header {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 22rem) auto;
+  }
+
+  .header > .header > :nth-child(2) {
+    width: 100%;
+  }
+}
+
+@media (min-width: 72rem) {
+  .right-sidebar-container {
+    width: var(--workshop-toc-width);
+  }
+
+  [data-has-sidebar][data-has-toc] .main-pane {
+    width: calc(100% - var(--workshop-toc-width));
+  }
+
+  .right-sidebar-panel .sl-container {
+    width: calc(var(--workshop-toc-width) - 2 * var(--sl-sidebar-pad-x));
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --sl-nav-gap: 0.65rem;
+    --sl-nav-pad-x: 0.75rem;
+  }
+
+  .site-title {
+    font-size: 1rem;
+  }
+
+  .site-title img {
+    height: 1.5rem;
+  }
+
+  .workshop-intro {
+    gap: 1rem;
+  }
+
+  .workshop-intro img {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
