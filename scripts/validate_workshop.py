@@ -100,6 +100,7 @@ def validate_runs():
     assert "Question 1 of 15" in final_output
     assert "Question 15 of 15" in final_output
     assert "Alex, here are your top MISA cluster matches:" in final_output
+    assert "Events (Events)" not in final_output
 
 
 def main():
