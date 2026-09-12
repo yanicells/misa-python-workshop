@@ -3,9 +3,9 @@ title: Where to go next
 description: Continue learning Python by adding one useful idea at a time.
 ---
 
-You finished a quiz, which means you already know enough Python to make decisions, repeat work, organize data, and split a program into functions. The next step is not to memorize the rest of the language. Pick something you want your program to do, then learn the part of Python that helps you do it.
+You finished a quiz, which means you already know enough Python to make decisions, repeat work, organize data, and split a program into functions. Pick something you want your next program to do, then learn the part of Python that helps you build it.
 
-These lessons continue from the workshop, but they are not another live session. You can follow them in order or jump to the one your next project needs.
+These lessons continue from the workshop for independent practice. Follow them in order or jump to the one your next project needs.
 
 ## Choose a route
 
