@@ -76,12 +76,15 @@ The final `CLUSTERS` dictionary stores a display name and description for each s
 ```python title="Inside the results loop"
 display_name = CLUSTERS[cluster]["name"]
 description = CLUSTERS[cluster]["description"]
+display_label = display_name
+if display_name != cluster:
+    display_label += " (" + cluster + ")"
 print()
-print(f"{rank}. {display_name} ({cluster}){tie_label} | {percentage:.1f}% of quiz points")
+print(f"{rank}. {display_label}{tie_label} | {percentage:.1f}% of quiz points")
 print(description)
 ```
 
-The short codes stay useful as dictionary keys, while the player sees names such as `Office of the Secretary General (OSG)`.
+The short codes stay useful as dictionary keys. The player sees names such as `Office of the Secretary General (OSG)`, while Events avoids the repeated label `Events (Events)`.
 
 ## Copy the final question bank
 

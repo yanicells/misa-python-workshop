@@ -74,7 +74,7 @@ Use numbers or stable IDs when two prompts begin with the same words.
 
 Produce a report that adds the possible points for each result label across all answer choices. A choice with 2 primary points and 1 related point contributes those weights to their matching labels.
 
-This report does not prove that a quiz is fair. It only catches structural imbalances such as one label appearing ten times while another appears twice. Explain that limit in the output or README.
+This report catches structural imbalances such as one label receiving ten possible points while another receives two. It cannot show whether real answer patterns or question wording make the quiz fair. Explain that limit in the output or README.
 
 Test the totals by hand on a tiny bank before using a larger one. Report the highest and lowest totals so a large structural imbalance is easy to spot.
 
