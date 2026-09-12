@@ -1,14 +1,22 @@
 ---
-title: Get ready to run Python
-description: Install your tools, run the starter, or use the matching Colab notebook.
+title: Set up your workshop folder
+description: Install the tools, get the project from GitHub, and run the starter.
 ---
 import Checkpoint from '../../components/Checkpoint.astro';
 
-## Before the workshop
+## Install the three tools
 
 Install [Python](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads), and [VS Code](https://code.visualstudio.com/download). VS Code is where you'll edit text. Python runs it. Git records versions of your work. You can use another editor if you already have one.
 
-Open a terminal. In VS Code, choose **Terminal → New Terminal**. A terminal accepts commands; press Enter after each line. If you see Python's `>>>` prompt, type `exit()` to return to your terminal before running shell commands.
+Add Microsoft's [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) to VS Code. It helps VS Code recognize Python files, run programs, and point out common mistakes. [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) adds clearer code suggestions and error hints. The Python extension may install it for you.
+
+After installing Python, open VS Code's Command Palette with **Ctrl+Shift+P** on Windows or **Cmd+Shift+P** on macOS. Choose **Python: Select Interpreter**, then select the Python 3 installation you just checked.
+
+Open a terminal in VS Code with **Terminal → New Terminal**. A terminal accepts commands. Type one command and press Enter. Wait for it to finish before entering the next one. If you see Python's `>>>` prompt, type `exit()` to return to the terminal.
+
+## Check the installations
+
+On Windows, run one line at a time:
 
 On Windows, check:
 
@@ -17,30 +25,64 @@ py --version
 git --version
 ```
 
-On macOS, check:
+On macOS, run:
 
 ```bash
 python3 --version
 git --version
 ```
 
-You need Python 3.10 or newer. The quiz uses only Python's standard library. Students do not need Node.js or the website dependencies.
+The first command should report Python 3.10 or newer. The second should print a Git version. The quiz uses only Python's standard library, so you do not need to install Python packages. You also do not need Node.js or the website dependencies.
 
 Create a [GitHub account](https://github.com/signup) before the event if you want to publish your work later. Cloning a public repository doesn't require an account.
 
 ## Get the project
 
-If you already cloned the repo, open that folder and skip the clone command. Otherwise, use `cd` to go to a folder where you keep projects, then run:
+If you already cloned the repository, open that folder and skip to **Open the starter checkpoint**. Do not clone a second copy into the same folder.
+
+### 1. Download the repository
+
+Use `cd` to move to a folder where you keep projects. Then run:
 
 ```bash
- git clone https://github.com/yanicells/misa-python-workshop.git
- cd misa-python-workshop
- git checkout 00-start
- git checkout -b my-quiz
- cd workshop
+git clone https://github.com/yanicells/misa-python-workshop.git
 ```
 
-`clone` downloads the repository and its history. A branch names a line of work. `00-start` is our prepared starting point. `my-quiz` is your own branch, where you will make and commit changes. These commands keep you on a named branch rather than a detached commit.
+`git clone` downloads the files and their Git history into a new `misa-python-workshop` folder.
+
+### 2. Enter the project folder
+
+```bash
+cd misa-python-workshop
+```
+
+`cd` means change directory. A directory is a folder. Your terminal now runs commands inside the repository.
+
+### 3. Open the starter checkpoint
+
+```bash
+git checkout 00-start
+```
+
+This loads our prepared starting version. A branch is a named line of work in Git.
+
+### 4. Make your own branch
+
+```bash
+git checkout -b my-quiz
+```
+
+The `-b` option creates a branch and switches to it. Keep your changes on `my-quiz` during the workshop. The numbered branches stay available as working references.
+
+### 5. Enter the workshop folder
+
+```bash
+cd workshop
+```
+
+This folder contains the Python files you will edit.
+
+## Run the starter
 
 Open the repository folder in VS Code with **File → Open Folder**. Select `workshop/quiz.py`. On macOS, run:
 
@@ -54,20 +96,20 @@ On Windows:
 py quiz.py
 ```
 
-You should see `Your MISA quiz starts here.` If the command fails, go to [troubleshooting](../help/) or use Colab below.
+You should see `Your MISA quiz starts here.` If the command fails, go to [troubleshooting](../help/) or use Colab below. Once it works, continue to [welcome the player](../build/welcome/).
 
 <Checkpoint id="00-start" />
 
 ## Use Colab if setup gets in the way
 
-[Open the workshop notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/05-results/workshop/misa-quiz.ipynb).
+[Open the workshop notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb).
 
 1. Sign in to Google and choose **File → Save a copy in Drive**. Edit your copy.
 2. Read the cell marked `00-start`, then run its code cell using the play button or Shift+Enter.
 3. Follow the matching milestone in this guide. Each notebook milestone has a complete code cell. Run one milestone at a time, from top to bottom.
 4. When a cell asks a question, type into its input box. Wait until it finishes before starting another cell.
 
-Colab runs Python on a hosted computer. You can do the same Python edits there, but you'll skip local Git practice for now. The notebook includes the question data, so you don't need to upload files or install packages. Save the notebook to keep your edits, and download an `.ipynb` copy if you want a local backup.
+Colab runs Python on a hosted computer. You can make the same Python changes there, but you will skip local Git practice for now. The notebook includes the question data, so you do not need to upload files or install packages. Save the notebook to keep your edits. You can also download an `.ipynb` copy as a local backup.
 
 ## If Git needs your name
 

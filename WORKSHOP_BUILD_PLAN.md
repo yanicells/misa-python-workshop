@@ -44,7 +44,7 @@ Implementation deliverables:
 
 This is the `main` layout: no completed learner Python project on `main`. After cloning, participants check out `00-start`; learner code appears under `/workshop` on that branch. Keep the root and workshop READMEs distinct. Explanations belong primarily on the website; READMEs are short navigation/run guides.
 
-Choose a small, meaningful sequence of numbered descriptive checkpoint branches. `00-start` is the start; the final checkpoint branch contains the complete quiz. Finalize intermediate names and the final branch name during implementation, then use them consistently everywhere. Each checkpoint is a cumulative runnable milestone, not an independent exercise folder.
+Use the checkpoint branches `00-start`, `01-welcome`, `02-question`, `03-loops`, `04-functions`, `05-results`, and `06-improve`. The final `06-improve` branch contains the complete 15-question weighted quiz. Each checkpoint is a cumulative runnable milestone, not an independent exercise folder.
 
 Prefer a single clear entry script with only a small separate question-data file if that aids readability. Avoid package scaffolding and unnecessary abstractions. Use Python's standard library; no web server, database, accounts, APIs, or third-party Python dependencies in the required project. Keep maintainer checks outside the learner's main working files and add them to the repository only when they remain useful. Store the fallback notebook under `/workshop` on applicable checkpoint branches and link directly to the appropriate Colab version; do not place completed notebook solutions on `main`.
 
@@ -54,12 +54,12 @@ All branches in a repository version the whole tree, not just `/workshop`. Prese
 
 Build a playful personality quiz, inspired by the idea of [UniSort](https://github.com/yanicells/UniSort), not a port of its full implementation or scoring system.
 
-- Ask a short sequence of questions about the participant; there are no correct answers.
-- Each choice awards one point to each of one or two associated clusters. Store associations as data and loop through them to update scores.
-- Build and explain one question first, then provide the bulk question bank for copying. Learners can customize one question or the wording.
-- Use actual cluster context from PMG. Balance scoring opportunities across the question bank and check that outcomes are not structurally biased toward frequently listed clusters.
+- Ask for a name or nickname, then ask 15 questions about the participant; there are no correct answers. Show a question number and use clear blank lines between terminal sections.
+- Each choice awards 2 points to its closest cluster and 1 point to a related cluster. Store the point mapping as data and loop through it to update scores. Every choice awards 3 total points.
+- Build and explain one question first. Use a seven-question unweighted bank while teaching the core loop, then provide the complete 15-question weighted bank for copying in the final improvement milestone. Learners can customize one question or its wording.
+- Use actual cluster context from PMG. Keep total weighted scoring opportunities within one point across the seven clusters so no cluster has a structural scoring advantage.
 - Validate choices with straightforward membership checks and a `while` retry. Keep answer identifiers as strings to avoid unnecessary conversion/error handling in the main flow.
-- Percentage means **cluster points / all points awarded × 100**. Label it as a share of quiz points, not a scientifically measured compatibility. An answer awarding two clusters contributes two total points.
+- Percentage means **cluster points / all points awarded × 100**. Label it as a share of quiz points, not a scientifically measured compatibility. A complete final run awards 45 points.
 - Sort scores and show the **top three distinct positive score levels** using dense ranks: ties share a rank and the next distinct score advances by one. Include every cluster tied at a displayed rank, even if more than three clusters appear. Fewer than three ranks is acceptable when fewer earned points.
 - Each displayed result includes rank, cluster name, percentage, description, and a clear tie indicator when applicable. Rank by raw scores, not rounded display percentages. The displayed subset need not sum to 100%.
 - Ensure valid question data always awards points; handle an empty/zero-score state simply instead of dividing by zero.
@@ -79,13 +79,15 @@ Use this as sequencing guidance, not a finished lesson script or proven timing s
 | Stage | Topics / activity | Immediate application |
 | --- | --- | --- |
 | Welcome and destination | Introduce presenters and finished outcome; brief `import`/`random` exposure | Demonstrate the quiz; randomly select about five participants for introductions |
+| Meet Python and GitHub | What Python can build; Git, GitHub, repositories, commits, branches | Understand the tools and browse the repository before entering commands |
 | Get the project | Git vs. GitHub, terminal navigation, `clone`, branches, `checkout` | Clone `main`, open `/workshop`, switch to `00-start`, run the starter |
-| First personal change | Running Python, comments, indentation, variables, strings, `print()` | Customize welcome text; use Input → Process → Output as the recurring frame |
+| First personal change | Running Python, comments, indentation, variables, strings, `print()`, `input()` | Ask for the player's name; use Input → Process → Output as the recurring frame |
 | Save a working version | `status`, staging with `add`, local `commit` | Save the first customization; distinguish saving files from recording history |
 | One personality question | `input()`, conditions, comparisons, answer validation | Read a choice and award initial points; retry invalid answers with `while` |
 | Expand the quiz | Lists, indexing, dictionaries, key access, `for`, simple nested iteration, `+=` | Understand one question's data, copy the question bank, loop through questions and associated clusters |
 | Organize working behavior | Functions, parameters, return values | Group behavior students already understand into small functions |
 | Show results | Arithmetic, totals, floats, percentages, formatting, sorting, rank tracking | Display three score ranks with descriptions and ties |
+| Improve the quiz | Nested point dictionaries and weighted addition | Expand to 15 grounded questions with 2-point primary and 1-point related matches |
 | Test and personalize | Reading errors, manual checks, local commit; recovery as needed | Try answers and a tie, customize, let a neighbor try the quiz, save finished work |
 | Closing / next steps | Follow-up practice, sharing, MISA; optional remote Git | Point to roadmap and project specs; push only if time permits |
 
@@ -143,8 +145,8 @@ Acceptance checks:
 - Fresh clone → `00-start` → documented run succeeds without website dependencies.
 - `main` has the two READMEs and no completed learner project; final code is on the named final checkpoint branch.
 - Every checkpoint runs and matches its lesson, expected behavior, notebook milestone, and recovery instructions.
-- Validate scoring for single- and two-cluster awards, percentages, invalid input retry, ties spanning third rank, fewer positive ranks, and zero-score handling. Use small maintainer fixtures or manual checks; do not burden beginners with a test framework.
-- Validate question-bank scoring opportunities and confirm cluster descriptions against PMG context.
+- Validate name input, question numbering, weighted awards, percentages, invalid input retry, ties spanning third rank, fewer positive ranks, and zero-score handling. Use small maintainer fixtures or manual checks; do not burden beginners with a test framework.
+- Validate all 15 questions, confirm that each choice awards 3 points, keep cluster opportunities within one point, and confirm descriptions against PMG context.
 - Test notebook execution from a clean runtime and local execution on supported workshop platforms.
 - Exercise recovery after a student's customization and confirm earlier work remains recoverable.
 - Record actual rehearsal duration and any scope adjustments; do not label the time target verified without a rehearsal.
