@@ -55,8 +55,11 @@ def show_results(name, scores):
         percentage = points / total_points * 100
         display_name = CLUSTERS[cluster]["name"]
         description = CLUSTERS[cluster]["description"]
+        display_label = display_name
+        if display_name != cluster:
+            display_label += " (" + cluster + ")"
         print()
-        print(f"{rank}. {display_name} ({cluster}){tie_label} | {percentage:.1f}% of quiz points")
+        print(f"{rank}. {display_label}{tie_label} | {percentage:.1f}% of quiz points")
         print(description)
         previous_score = points
 
