@@ -58,9 +58,7 @@ h3 {
   padding: clamp(1.25rem, 3vw, 2rem);
   margin-block: 0.5rem 2rem;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--sl-color-accent) 18%, transparent), transparent 42%),
-    var(--sl-color-bg-nav);
+  background: var(--sl-color-bg-nav);
   border: 1px solid var(--sl-color-gray-5);
   border-radius: 1.25rem;
 }
@@ -69,7 +67,6 @@ h3 {
   width: clamp(130px, 18vw, 180px);
   height: clamp(130px, 18vw, 180px);
   object-fit: contain;
-  filter: drop-shadow(0 0.75rem 1.5rem color-mix(in srgb, var(--sl-color-accent) 22%, transparent));
 }
 
 .workshop-intro p {
