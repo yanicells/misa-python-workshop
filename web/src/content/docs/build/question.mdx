@@ -1,34 +1,99 @@
 ---
 title: 02 · Ask one question
-description: Read a choice, validate it, and select a response with if, elif, and else.
+description: Learn methods, conditions, and while loops before adding the first quiz question.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
-import { Code } from '@astrojs/starlight/components';
-import code from '../../../examples/02-question/quiz.txt?raw';
 
-You'll ask one question and tell the player which cluster earns a point. We'll store scores in the next milestone.
+By the end of this step, the quiz will ask one question, clean the answer, and retry when the player types an unavailable choice. We will store real scores in the next milestone.
 
-## Read an answer
+## Clean text with methods
 
 `input()` pauses and returns what the player typed as a string. Even if they type `2`, Python receives `"2"`. Our answers are letters, so we can keep them as strings.
 
-A **method** is an operation called on a value using a dot. `strip()` removes whitespace at the ends; `lower()` changes uppercase letters to lowercase. This lets ` A ` count as `a`.
+A **method** is an operation attached to a value. Call it with a dot after that value. `strip()` removes whitespace from both ends of a string, while `lower()` changes uppercase letters to lowercase.
 
-## Choose which lines run
+Try the methods on their own in `scratch.py`:
 
-Replace the whole `workshop/quiz.py` file with:
+```python title="workshop/scratch.py"
+answer = " A "
+clean_answer = answer.strip().lower()
+print(clean_answer)
+```
 
-<Code code={code} lang="python" title="workshop/quiz.py" />
+It prints `a`. Each method returns a new string, so the original `answer` still contains `" A "`.
 
-`while` repeats its indented block as long as its condition is true. `answer not in ["a", "b", "c"]` checks that the answer is absent from the list of allowed letters. Asking again inside the loop gives the player a way to leave it.
+## Choose which block runs
 
-`if` checks the first condition. `elif` checks another condition if the first was false. `else` handles the remaining valid answer. Exactly one of these three bodies runs. `==` compares values; `=` assigns one.
+A **condition** is an expression that becomes `True` or `False`. `if` runs its indented block when a condition is true. `elif` checks another condition when earlier ones were false. `else` handles the remaining case.
 
-The colon starts a block. Indent the lines belonging to that block by four spaces. Align `elif` and `else` with `if`. Indentation tells Python which statements belong together.
+```python title="workshop/scratch.py"
+weather = "rainy"
+
+if weather == "sunny":
+    print("Bring sunglasses.")
+elif weather == "rainy":
+    print("Bring an umbrella.")
+else:
+    print("Check outside before leaving.")
+```
+
+This prints `Bring an umbrella.` The `==` operator compares two values. A single `=` assigns a value. The colon begins a block, and four spaces show which statements belong to it.
+
+## Repeat until the answer is valid
+
+A `while` loop repeats its indented block while its condition stays true. The program below asks again until `answer` belongs to the list of allowed letters:
+
+```python title="workshop/scratch.py"
+answer = input("Choose a, b, or c: ").strip().lower()
+
+while answer not in ["a", "b", "c"]:
+    print("Please type a, b, or c.")
+    answer = input("Try again: ").strip().lower()
+
+print("Accepted: " + answer)
+```
+
+`in` checks whether a value belongs to a collection. `not in` checks that it is absent. The second `input()` changes `answer`; without that line, an invalid answer would keep the loop running forever.
+
+## Apply it to the quiz
+
+Keep the welcome code at the top of `quiz.py`. Add these lines after it:
+
+```python title="Add after the greeting in workshop/quiz.py"
+print()
+print("Question 1 of 1")
+print("What would you like to help with?")
+print("a. Build a small app")
+print("b. Design a poster")
+print("c. Plan an activity")
+
+answer = input("Your choice: ").strip().lower()
+```
+
+The empty `print()` adds a blank line so the terminal is easier to scan.
+
+Next, add the validation loop:
+
+```python title="Add after the first answer"
+while answer not in ["a", "b", "c"]:
+    print("Please type a, b, or c.")
+    answer = input("Your choice: ").strip().lower()
+```
+
+Finally, add the temporary result:
+
+```python title="Add after the validation loop"
+if answer == "a":
+    print("eServices is the closest match for that choice.")
+elif answer == "b":
+    print("Communications is the closest match for that choice.")
+else:
+    print("Events is the closest match for that choice.")
+```
 
 ## Run and check
 
-Save and run the file. Try `z`, then ` A `. You should see a retry message, then `eServs earns 1 point.` Try `b` and `c` on separate runs too.
+Save and run the file. Enter your name, then try `z` and ` A `. The quiz should retry `z`, accept the cleaned `a`, and print the eServices message. Try `b` and `c` on separate runs too.
 
 Input is the answer. Processing is validation and the condition. Output is the point message.
 

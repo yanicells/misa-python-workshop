@@ -1,90 +1,211 @@
 ---
 title: 03 · Loop through answers
-description: Use lists and dictionaries to ask a question bank and update cluster scores.
+description: Learn lists, indexes, dictionaries, and for loops before using a question bank.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
 import Stepper from '../../../components/Stepper.astro';
 import { Code } from '@astrojs/starlight/components';
-import code from '../../../examples/03-loops/quiz.txt?raw';
-import data from '../../../examples/05-results/questions.txt?raw';
+import data from '../../../examples/03-loops/questions.txt?raw';
 
-You'll move the question text into data and run the same instructions for every question. After this milestone, all seven questions work and Python prints the scores.
+By the end of this step, the quiz will ask seven questions and keep a score for every cluster. We will learn the collections and loops separately before putting them into the quiz.
 
-## Give the data a shape
+## Keep an ordered group in a list
 
-A **list** keeps items in order. Indexes start at zero: `clusters[0]` is the first item. A **dictionary** stores values under keys, such as a cluster name or an answer letter. Square brackets retrieve an item; the value inside them is an index for a list or a key for a dictionary.
-
-Try this in `scratch.py`:
+A **list** stores several values in order. Square brackets create the list, and commas separate its items.
 
 ```python title="workshop/scratch.py"
-clusters = ["COMMS", "HR"]
-print(clusters[0])
-scores = {"COMMS": 0, "HR": 0}
-scores["HR"] += 1
-print(scores["HR"])
+snacks = ["turon", "taho", "banana cue"]
+print(snacks)
 ```
 
-It prints `COMMS`, then `1`. `+= 1` means add one to the existing value and assign the result back. `scores = {}` starts an empty dictionary.
+Each item has an **index**, which is its position in the list. Python starts counting indexes at zero:
 
-Here's one question in our question bank. Read the keys before copying the full bank below:
+```python title="Try next in scratch.py"
+print(snacks[0])
+print(snacks[1])
+print(snacks[-1])
+```
+
+This prints `turon`, `taho`, and `banana cue`. The index `-1` means the last item. An index outside the list raises `IndexError`.
+
+Lists can change while the program runs. Assign through an index to replace an item, or call `append()` to add one at the end:
+
+```python title="Try next in scratch.py"
+snacks[1] = "fish ball"
+snacks.append("kwek-kwek")
+print(snacks)
+print(len(snacks))
+```
+
+`len(snacks)` returns the number of items. It now returns `4`.
+
+## Repeat work with a for loop
+
+A `for` loop takes one item from a collection, assigns it to a variable, and runs its indented block. Then it moves to the next item.
+
+```python title="workshop/scratch.py"
+snacks = ["turon", "taho", "banana cue"]
+
+for snack in snacks:
+    print("I would try " + snack)
+```
+
+The body runs three times. `snack` holds a different string each time.
+
+<Stepper kind="loop" />
+
+### Repeat with range
+
+`range()` produces a sequence of integers. `range(1, 4)` gives `1`, `2`, and `3`; the stop value `4` is excluded.
+
+```python title="workshop/scratch.py"
+for question_number in range(1, 4):
+    print("Question " + str(question_number))
+```
+
+Use `range(len(snacks))` when you genuinely need each index:
+
+```python title="Try next in scratch.py"
+for index in range(len(snacks)):
+    print(index, snacks[index])
+```
+
+This prints indexes `0`, `1`, and `2` beside their items. If you only need each item, the earlier `for snack in snacks` loop is easier to read.
+
+## Store named values in a dictionary
+
+A **dictionary** stores values under keys. A list answers "what is at position 0?" A dictionary answers "what is stored under this name?"
+
+```python title="workshop/scratch.py"
+scores = {
+    "Communications": 0,
+    "Events": 0,
+}
+
+print(scores["Events"])
+scores["Events"] += 1
+print(scores["Events"])
+```
+
+This prints `0`, then `1`. `scores["Events"]` uses the key to retrieve the value. `+= 1` adds one and assigns the result back to the same key.
+
+Looping over a dictionary visits its keys:
+
+```python title="Try next in scratch.py"
+for cluster in scores:
+    print(cluster, scores[cluster])
+```
+
+## Put collections inside each other
+
+Our question bank is a list of dictionaries. Each question dictionary has a prompt and a dictionary of choices. Each choice has its own text and list of matching clusters.
+
+Study one question before opening the full bank:
 
 ```python title="One question's data"
 question = {
     "prompt": "Your group has an idea for a campus event. What do you pick up first?",
     "choices": {
-        "a": {"text": "Sketch a small app that would help people sign up.", "clusters": ["eServs"]},
-        "b": {"text": "Work on the poster and a pitch for possible partners.", "clusters": ["COMMS", "MKT"]},
-        "c": {"text": "Put the schedule and room requirements in one document.", "clusters": ["Events", "OSG"]},
-        "d": {"text": "Plan a member activity and check what the group can afford.", "clusters": ["HR", "OET"]},
+        "a": {
+            "text": "Sketch a small app that would help people sign up.",
+            "clusters": ["eServs"],
+        },
+        "b": {
+            "text": "Create the event look and promotional materials.",
+            "clusters": ["COMMS"],
+        },
     },
 }
+
+print(question["prompt"])
 print(question["choices"]["a"]["text"])
 ```
 
-The last line follows three dictionary keys to reach the text for answer `a`. Later, `QUESTIONS[0]` gives us this whole first question. Capital letters in `QUESTIONS` and `CLUSTERS` are a naming convention for data we intend to keep fixed, not a special Python type.
+Read the second lookup from left to right: use the `"choices"` key, then the `"a"` key, then the `"text"` key.
 
-## Follow a loop
+## A loop can contain another loop
 
-`for cluster in clusters` assigns each list item to `cluster`, then runs the indented body. A loop over a dictionary visits its keys.
+The outer loop visits each question. The inner loop visits the choice letters for the current question.
 
-<Stepper kind="loop" />
+```python title="Practice with two small questions"
+questions = [
+    {"prompt": "Pick a drink", "choices": ["Water", "Juice"]},
+    {"prompt": "Pick a snack", "choices": ["Taho", "Turon"]},
+]
 
-The trace is: assign `COMMS`, print it, assign `HR`, print it, then stop because no items remain. The variable keeps its last value. It doesn't turn into an empty string after the loop.
-
-For a numbered repetition, `range(1, 4)` supplies `1`, `2`, and `3`. The stop value is excluded. Try this in `scratch.py`:
-
-```python title="workshop/scratch.py"
-for question_number in range(1, 4):
-    print(question_number)
+for question in questions:
+    print(question["prompt"])
+    for choice in question["choices"]:
+        print(choice)
 ```
+
+Finish the inner loop before moving to the next question.
 
 ## Copy the question bank
 
-Create `workshop/questions.py`, next to `quiz.py`. Copy this entire block into it. You don't need to type the repeated data.
+Create `workshop/questions.py` beside `quiz.py`. Copy the complete block below. The capital names `CLUSTERS` and `QUESTIONS` are a convention for data we do not plan to reassign.
 
 <details>
 <summary>Copy the full questions.py file</summary>
 <Code code={data} lang="python" title="workshop/questions.py" />
 </details>
 
-`CLUSTERS` maps names to result descriptions. `QUESTIONS` is a list of seven question dictionaries. Each choice awards one point to each cluster in its list. The bank gives every cluster seven scoring opportunities, but that doesn't make it a scientific assessment.
+The bank has seven questions for this checkpoint. Each choice awards one point to one or two clusters. A later lesson will expand it to 15 questions and give stronger matches more weight.
 
-## Repeat the question and scoring steps
+## Apply the loops to the quiz
 
-Replace all of `workshop/quiz.py` with:
+At the top of `quiz.py`, import the question data:
 
-<Code code={code} lang="python" title="workshop/quiz.py" />
+```python title="First line of workshop/quiz.py"
+from questions import CLUSTERS, QUESTIONS
+```
 
-`from questions import CLUSTERS, QUESTIONS` loads the data from the neighboring file. It doesn't download anything. The first loop gives every cluster a starting score of zero. Inside the question loop, another loop prints the choices. After validation, the last loop awards the selected points.
+After the greeting, start every cluster at zero:
 
-## Watch the scores change
+```python title="Add after the greeting"
+scores = {}
+for cluster in CLUSTERS:
+    scores[cluster] = 0
+```
+
+Then add the question loop. It prints a question number, prints each choice, validates the answer, and awards the selected points:
+
+```python title="Add after score setup"
+question_number = 1
+for question in QUESTIONS:
+    print()
+    print("Question " + str(question_number) + " of " + str(len(QUESTIONS)))
+    print(question["prompt"])
+
+    choices = question["choices"]
+    for letter in choices:
+        print(letter + ". " + choices[letter]["text"])
+
+    answer = input("Your choice: ").strip().lower()
+    while answer not in choices:
+        print("Please type one of the letters shown.")
+        answer = input("Your choice: ").strip().lower()
+
+    selected_choice = choices[answer]
+    for cluster in selected_choice["clusters"]:
+        scores[cluster] += 1
+
+    question_number += 1
+
+print()
+print(scores)
+```
+
+The final `question_number += 1` prepares the number for the next loop. The score loop runs only after the answer has passed validation.
+
+## Watch one answer change two scores
 
 <Stepper kind="score" />
 
-This selected answer first gives Events one point, then gives OSG one point. It awards two total points. It does not give each cluster half a point.
+The selected answer gives Events one point and OSG one point. That is two awarded points in total.
 
 ## Run and check
 
-Run the quiz and answer `a` seven times. Each cluster should finish with one point. Try `c` for the first question on your next run: Events and OSG should each receive that question's point.
+Run the quiz and answer `a` seven times. Each cluster should finish with one point. The terminal should label the questions from `Question 1 of 7` through `Question 7 of 7`.
 
 <Checkpoint id="03-loops" />

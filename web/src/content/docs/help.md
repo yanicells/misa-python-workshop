@@ -29,7 +29,9 @@ Copy code using the copy button, not a screenshot. It copies executable text wit
 
 `KeyError` means the key isn't in that dictionary. Use the cluster names exactly as written in `CLUSTERS`. The validation loop must run before you look up `choices[answer]`.
 
-For `ModuleNotFoundError: No module named 'questions'`, put `questions.py` beside `quiz.py`. You don't install this file with pip; copy the question bank from the loops lesson.
+For `ModuleNotFoundError: No module named 'questions'`, put `questions.py` beside `quiz.py`. You do not install this file with pip; copy the question bank from the loops lesson or the final improvement lesson.
+
+If the final quiz raises a `KeyError` inside `award_points`, check that every key inside a choice's `"points"` dictionary exactly matches one of the seven keys in `CLUSTERS`. Each point value should be an integer.
 
 ## The program keeps asking
 
@@ -51,4 +53,4 @@ Your saved notebook can remain in Drive even when its running Python session dis
 
 ## The result looks surprising
 
-Every cluster tied at a displayed score level appears, so you may see more than three clusters. A percentage is a share of awarded points. Different answer choices can award different total numbers of points. Check the [results explanation](../build/results/) before changing the ranking code.
+Every cluster tied at a displayed score level appears, so you may see more than three clusters. A percentage is a share of awarded points. In the final bank, every answer adds 3 points: 2 to its closest match and 1 to a related cluster. Check the [results explanation](../build/results/) and [weighted scoring lesson](../build/improve/) before changing the ranking code.

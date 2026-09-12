@@ -16,7 +16,7 @@ cd workshop
 
 Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see `Your MISA quiz starts here.` You need Python 3.10 or newer and Git. Students do not need Node.js.
 
-`main` contains the guide and website examples. The learner files start on `00-start`; the finished quiz is on `05-results`. Stay on your own branch as you edit. Save and commit your work before using a reference checkpoint.
+`main` contains the guide and website examples. The learner files start on `00-start`; the finished 15-question weighted quiz is on `06-improve`. Stay on your own branch as you edit. Save and commit your work before using a reference checkpoint.
 
 <!-- CHECKPOINTS:START -->
 | Checkpoint | Lesson |
@@ -27,9 +27,10 @@ Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see `Your 
 | [03-loops](https://github.com/yanicells/misa-python-workshop/tree/03-loops/workshop) | [Guide](web/src/content/docs/build/loops.mdx) |
 | [04-functions](https://github.com/yanicells/misa-python-workshop/tree/04-functions/workshop) | [Guide](web/src/content/docs/build/functions.mdx) |
 | [05-results](https://github.com/yanicells/misa-python-workshop/tree/05-results/workshop) | [Guide](web/src/content/docs/build/results.mdx) |
+| [06-improve](https://github.com/yanicells/misa-python-workshop/tree/06-improve/workshop) | [Guide](web/src/content/docs/build/improve.mdx) |
 <!-- CHECKPOINTS:END -->
 
-[Open the matching notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/05-results/workshop/misa-quiz.ipynb) and save a copy in Drive. It follows the same Python milestones without local Git setup.
+[Open the matching notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb) and save a copy in Drive. It follows the same Python milestones without local Git setup.
 
 ## Work on the website
 
