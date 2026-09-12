@@ -40,9 +40,14 @@ def milestone_source(checkpoint):
     directory = EXAMPLES / checkpoint
     parts = []
     questions = directory / "questions.txt"
+    quiz = (directory / "quiz.txt").read_text(encoding="utf-8").rstrip()
     if questions.exists():
         parts.append(questions.read_text(encoding="utf-8").rstrip())
-    parts.append((directory / "quiz.txt").read_text(encoding="utf-8").rstrip())
+        import_line = "from questions import CLUSTERS, QUESTIONS\n"
+        if not quiz.startswith(import_line):
+            raise ValueError(f"Expected question import in {checkpoint}/quiz.txt")
+        quiz = quiz.removeprefix(import_line).lstrip()
+    parts.append(quiz)
     return "\n\n".join(parts) + "\n"
 
 
