@@ -1,45 +1,147 @@
 ---
 title: 04 · Give your code a job
-description: Organize the working quiz into functions with parameters and return values.
+description: Learn parameters and return values, then organize familiar quiz steps into functions.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
-import { Code } from '@astrojs/starlight/components';
-import code from '../../../examples/04-functions/quiz.txt?raw';
 
-Your quiz already runs. Now you'll give groups of statements names so you can see what each part does.
+The quiz already works. This step gives related instructions a name, one small group at a time. Its behavior should stay the same.
 
 ## Define and call a function
 
-A **function** is a named group of instructions. `def` defines one; calling its name with parentheses runs it. A **parameter** is a name for an input to the function. An **argument** is the value supplied in a call.
-
-Try this in `scratch.py`:
+A **function** is a named group of instructions. `def` defines one. Calling the function's name with parentheses runs it.
 
 ```python title="workshop/scratch.py"
-def make_greeting(name):
-    return "Hi, " + name + "!"
+def say_hello():
+    print("Hello!")
 
-message = make_greeting("Alex")
-print(message)
+say_hello()
+say_hello()
 ```
 
-`name` is the parameter. `"Alex"` is the argument. `return` sends the finished string back to the caller and ends that function call. It does not print it. The output appears only when `print(message)` runs. A function without an explicit return value returns `None`.
+Defining the function does not run its body. The two calls make `Hello!` appear twice.
 
-## Organize the working quiz
+## Give a function an input
 
-Keep `questions.py` as it is. Replace the whole `quiz.py` file with this version:
+A **parameter** is a variable that receives an input when the function runs. An **argument** is the value supplied by the caller.
 
-<Code code={code} lang="python" title="workshop/quiz.py" />
+```python title="workshop/scratch.py"
+def greet(name):
+    print("Hi, " + name + "!")
 
-`ask_question(question)` prints and validates one question, then returns the selected letter. `award_points(scores, clusters)` updates the dictionary it receives. Dictionaries are mutable, so the changes remain visible to `run_quiz()` without a return statement.
+greet("Alex")
+greet("Sam")
+```
 
-`run_quiz()` connects those jobs. Read its question loop aloud: ask, look up the selected choice, award its points. The work inside these functions is the same work you just ran in the previous milestone.
+`name` is the parameter. `"Alex"` and `"Sam"` are arguments from two separate calls.
 
-The last two lines use Python's entry-point check. When you run `quiz.py` directly, `__name__` is `"__main__"`, so it calls `run_quiz()`. If another file imports `quiz`, the definitions load without starting the interactive questions.
+## Return a result
+
+`return` sends a value back to the caller and ends that function call.
+
+```python title="workshop/scratch.py"
+def double(number):
+    result = number * 2
+    return result
+
+doubled_points = double(3)
+print(doubled_points)
+```
+
+The function returns `6`. Returning and printing are different: `return` gives a value to the calling code, while `print()` displays something in the terminal. A function without an explicit `return` produces the value `None`.
+
+## Move question handling into one function
+
+In `quiz.py`, add this function below the import and above the welcome code:
+
+```python title="Add near the top of workshop/quiz.py"
+def ask_question(question, question_number, total_questions):
+    print()
+    print("Question " + str(question_number) + " of " + str(total_questions))
+    print(question["prompt"])
+
+    choices = question["choices"]
+    for letter in choices:
+        print(letter + ". " + choices[letter]["text"])
+
+    answer = input("Your choice: ").strip().lower()
+    while answer not in choices:
+        print("Please type one of the letters shown.")
+        answer = input("Your choice: ").strip().lower()
+
+    return answer
+```
+
+The three parameters let the function work with any question and number. It returns the valid answer so the rest of the program can use it.
+
+Replace the matching printing, input, and validation lines inside the main loop with one call:
+
+```python title="Inside the question loop"
+answer = ask_question(question, question_number, len(QUESTIONS))
+```
+
+Run the quiz now. Stop and compare with the previous version if its questions behave differently.
+
+## Move scoring into another function
+
+Add this function below `ask_question`:
+
+```python title="Add after ask_question"
+def award_points(scores, clusters):
+    for cluster in clusters:
+        scores[cluster] += 1
+```
+
+The `scores` dictionary is mutable, which means the function can change its stored values. Replace the scoring loop in the main program with:
+
+```python title="Inside the question loop"
+selected_choice = question["choices"][answer]
+award_points(scores, selected_choice["clusters"])
+```
+
+Read it as two actions: find the selected choice, then award its cluster points.
+
+## Connect the steps in run_quiz
+
+Put the remaining greeting, score setup, question loop, and final print inside a `run_quiz()` function:
+
+```python title="Add after award_points"
+def run_quiz():
+    print("Welcome to the MISA Cluster Finder!")
+    name = input("What should we call you? ")
+    print()
+    print("Hi, " + name + "!")
+    print("Answer a few questions to find MISA clusters you may enjoy.")
+
+    scores = {}
+    for cluster in CLUSTERS:
+        scores[cluster] = 0
+
+    question_number = 1
+    for question in QUESTIONS:
+        answer = ask_question(question, question_number, len(QUESTIONS))
+        selected_choice = question["choices"][answer]
+        award_points(scores, selected_choice["clusters"])
+        question_number += 1
+
+    print()
+    print(scores)
+```
+
+`run_quiz()` reads like an outline because the details now live in named functions.
+
+## Start the program
+
+Add this at the bottom of the file:
+
+```python title="Last two lines of workshop/quiz.py"
+if __name__ == "__main__":
+    run_quiz()
+```
+
+When you run `quiz.py` directly, Python sets `__name__` to `"__main__"`, so this calls `run_quiz()`. If another file imports `quiz`, the function definitions load without starting the questions.
 
 ## Run and check
 
-Run the file and answer `a` seven times. You should still get one point for every cluster. Moving code into functions should preserve the result.
-
-Try changing the greeting inside `run_quiz()`. Names assigned inside a function are usually local to that function. [Make functions predictable](../../moving-forward/functions/) explains scope, `None`, and early returns with a small practice program.
+Run the quiz and answer `a` seven times. You should still see one point for every cluster. Refactoring means changing the organization of code without changing what the program does.
 
 <Checkpoint id="04-functions" />

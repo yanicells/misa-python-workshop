@@ -1,66 +1,78 @@
 ---
 title: Put your work online
-description: Publish your branch to your own GitHub repository without losing the workshop remote.
+description: Make your own copy on GitHub, upload your quiz branch, and share its page.
 ---
 
-Saving a file, committing it, and publishing it are separate actions. Git records commits on your computer. GitHub receives them only after you push to a remote repository.
+GitHub gives your project a page that other people can open in a browser. They can read the README, browse the files, and inspect earlier commits. Your local files appear there only after you push them.
 
-## Make a repository for your version
+Before publishing, read through the project for names, student IDs, tokens, passwords, or anything else you did not mean to share.
 
-Create a new empty repository on GitHub. Leave its README, license, and `.gitignore` options unchecked so GitHub does not create a separate first commit.
+## Make your copy on the GitHub website
 
-Before publishing, read through your files for names, IDs, tokens, passwords, or other information you did not mean to share. Add a short README that explains what your program does and how to run it.
+1. Sign in to [GitHub](https://github.com/).
+2. Open the [MISA Python workshop repository](https://github.com/yanicells/misa-python-workshop).
+3. Select **Fork** near the upper-right corner of the repository page.
+4. Choose your account as the owner. You can keep the suggested repository name or choose a new one.
+5. Create the fork and wait for GitHub to open its page.
 
-## Keep the workshop remote
+A **fork** is a repository under your account that begins with another repository's history. Look at the owner name near the top of the page to confirm that you are viewing your copy.
 
-From the workshop repository, check the remotes you already have:
+The main parts of a GitHub repository page are:
+
+- **Code**, where you browse files and copy the repository URL;
+- **Commits**, where you inspect saved versions; and
+- the **README**, which explains what the project does and how to run it.
+
+Add a short README to your version after the quiz is online. Tell people what it asks, how to run `quiz.py`, and which Python version they need.
+
+## Connect your local project to your fork
+
+The workshop repository is already named `origin` on your laptop. Keep that connection so the checkpoint recovery instructions still work.
+
+Check it from the terminal:
 
 ```bash
 git remote -v
 ```
 
-`origin` should still point to the workshop repository. Keep it there so checkpoint and recovery instructions continue to work.
+On your fork's GitHub page, select the green **Code** button and copy the HTTPS URL. It looks like `https://github.com/YOUR_USERNAME/misa-python-workshop.git`.
 
-Copy the HTTPS URL of your empty repository. Add it under a different name, such as `mine`:
+Add that URL under the name `mine`:
 
 ```bash
-git remote add mine https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+git remote add mine https://github.com/YOUR_USERNAME/misa-python-workshop.git
 git remote -v
 ```
 
-Replace the example URL with the exact one GitHub gives you.
+Replace the example URL with the exact one copied from your page. `origin` should still point to the workshop, while `mine` should point to your fork.
 
-## Push your branch
+## Upload your quiz branch
 
-Check your current branch and working files first:
+Check that you are on your own branch and that the work you want is committed:
 
 ```bash
-git status
 git branch --show-current
+git status
 ```
 
-Commit any changes you want to publish. If your branch is named `my-quiz`, push it with:
+If your branch is named `my-quiz`, push it with:
 
 ```bash
 git push -u mine my-quiz
 ```
 
-The `-u` option connects your local branch to the remote branch. Later, while you are on the same branch, `git push` is enough.
+GitHub may open a browser sign-in or use your computer's credential manager. Your account password is not used directly as an HTTPS Git credential.
 
-GitHub may ask you to sign in through a browser or use a credential manager. Your account password is not used as an HTTPS Git credential.
+Return to your fork's page and refresh it. GitHub may show a banner for the recently pushed `my-quiz` branch. You can also open the branch menu above the file list and select `my-quiz`.
 
-## Bring down later changes carefully
-
-Commit your local work before pulling. Then run:
+The `-u` option remembers the connection between the local and GitHub branches. Later, while you are on `my-quiz`, this shorter command uploads new commits:
 
 ```bash
-git pull --ff-only mine my-quiz
+git push
 ```
 
-`--ff-only` refuses to combine diverging histories automatically. If it stops, read the message and ask someone to help compare the local and remote commits. Do not erase either version just to make the command pass.
+## Share and keep building
 
-GitHub's [push guide](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) explains the same workflow in more detail. The free [Pro Git book](https://git-scm.com/book/en/v2) is useful when you want to understand branches and remotes beyond the workshop.
+Copy the browser URL while the `my-quiz` branch is selected. Send it to a friend and ask them to follow your README. Their questions can show which instruction needs more detail.
 
-## Share what you made
-
-Send the repository link to a friend and ask them to run the program from your README. Their questions will show which instructions are missing. If you keep building with MISA, show the team what you tried and which part you want to learn next.
+Commit local changes before bringing down work from GitHub. The [GitHub push guide](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) covers the browser and command-line workflow in more detail. The free [Pro Git book](https://git-scm.com/book/en/v2) is useful when you want to understand branches and remotes beyond this workshop.

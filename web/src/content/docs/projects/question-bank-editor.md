@@ -15,7 +15,7 @@ The core editor should:
 
 - keep more than one question;
 - store a prompt and several answer choices for each question;
-- attach one or two allowed result labels to every choice;
+- attach two allowed result labels and small positive weights to every choice;
 - display one question in a readable preview;
 - reject empty prompts, empty choices, unknown labels, and choices with no award;
 - report how many scoring opportunities each label receives.
@@ -36,15 +36,15 @@ Write one question directly in the file. Print its prompt and choices in the sam
 
 Keep previewing separate from asking for an answer. This project is about editing data, so do not let quiz behavior distract from the first goal.
 
-Test a choice with one label and another with two. The display should make the difference easy to notice.
+Test choices whose primary and related labels receive different weights. The display should make the difference easy to notice.
 
 ## Milestone 2: validate the fixed data
 
-Write checks for the question you already have. A valid question needs a non-empty prompt, enough choices to be meaningful, non-empty answer text, and one or two known labels per choice.
+Write checks for the question you already have. A valid question needs a non-empty prompt, enough choices to be meaningful, non-empty answer text, and two different known labels per choice. Keep the weights positive integers with a fixed total, such as 2 points and 1 point.
 
 Decide how validation reports problems. A boolean says whether the data passed, while a list of messages can tell the author what to fix. The second takes more work but becomes more useful as the editor grows.
 
-Create broken copies on purpose. Remove a prompt, misspell a label, and give one choice an empty award list. Confirm that each problem is reported.
+Create broken copies on purpose. Remove a prompt, misspell a label, and give one choice an empty point dictionary. Confirm that each problem is reported.
 
 ## Milestone 3: create a prompt through input
 
@@ -56,7 +56,7 @@ Checkpoint question: if the author cancels halfway through, is the partial quest
 
 ## Milestone 4: add choices and labels
 
-Let the author add answer text to the selected question. Then ask for one or two labels from the allowed collection. Validate each label before storing the choice.
+Let the author add answer text to the selected question. Then ask for a primary label and a related label from the allowed collection. Validate each label before storing the choice, and reject a repeated label.
 
 You decide how choices receive identifiers. Letters match the workshop quiz, while numbers are easier to generate as the list grows. The data shape should not depend on manually writing a long chain of conditions.
 
@@ -72,11 +72,11 @@ Use numbers or stable IDs when two prompts begin with the same words.
 
 ## Milestone 6: count scoring opportunities
 
-Produce a report that counts how many times each result label appears across all answer choices. A choice with two labels contributes one opportunity to each label.
+Produce a report that adds the possible points for each result label across all answer choices. A choice with 2 primary points and 1 related point contributes those weights to their matching labels.
 
 This report does not prove that a quiz is fair. It only catches structural imbalances such as one label appearing ten times while another appears twice. Explain that limit in the output or README.
 
-Test the count by hand on a tiny bank before using a larger one.
+Test the totals by hand on a tiny bank before using a larger one. Report the highest and lowest totals so a large structural imbalance is easy to spot.
 
 ## Milestone 7: save the bank
 
@@ -99,9 +99,9 @@ Write these rules where another quiz author can find them.
 
 ## Test the finished version
 
-Create two questions. Give some choices one label and others two. Save, quit, and reopen the editor. Preview both questions and compare the opportunity report with a manual count.
+Create two questions with weighted primary and related labels. Save, quit, and reopen the editor. Preview both questions and compare the opportunity report with a manual count.
 
-Then try blank text, an unknown label, repeated labels on one choice, more than two labels, and a saved question missing a required field. The editor should explain the problem without silently changing the author's data.
+Then try blank text, an unknown label, repeated labels on one choice, a zero or negative weight, and a saved question missing a required field. The editor should explain the problem without silently changing the author's data.
 
 ## If you want to take it further
 

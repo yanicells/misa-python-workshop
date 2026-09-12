@@ -1,56 +1,93 @@
 ---
-title: 01 · Make it yours
-description: Edit a greeting, run your first Python file, and save a Git commit.
+title: 01 · Welcome the player
+description: Learn values, variables, print, and input before adding a personal greeting.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
 
-You'll make the starter greet you by name, then save that working version. Keep editing on `my-quiz`; checkpoint branches are there only when you need help recovering.
+By the end of this step, the quiz will ask for the player's name and greet them. Keep editing on `my-quiz`; use a checkpoint branch only when you need a working reference.
 
-## Write your greeting
+## Values and variables
 
-Replace all of `workshop/quiz.py` with this block. Change `Alex` to your name.
+A **value** is a piece of information in a program. Text in quotes is a **string**. A **variable** gives a value a name so you can use it again. The `=` sign assigns the value on its right to the variable on its left.
 
-```python title="workshop/quiz.py"
-# Change the name to your own.
-name = "Alex"
-print("Hi, " + name + "!")
-print("Let's find a MISA cluster you might enjoy.")
+Create `workshop/scratch.py` and try this example before touching the quiz:
+
+```python title="workshop/scratch.py"
+favorite_snack = "turon"
+servings = 2
+print(favorite_snack)
+print(servings)
 ```
 
-`name` is a variable: a name bound to a value. `=` assigns the value on its right. The quoted text is a **string**. The `+` signs join strings, and `print()` writes text to the terminal. Text after `#` is a comment; Python doesn't execute it.
+`print()` sends a value to the terminal. Python runs these statements from top to bottom, so it prints `turon` and then `2`.
 
-Save the file. Run `python3 quiz.py` on macOS or `py quiz.py` on Windows from the `workshop` folder.
+Text after `#` is a **comment**. Python ignores comments when it runs the file. Comments can leave a short note about why the code exists.
 
-```text title="Expected output, before changing Alex"
-Hi, Alex!
-Let's find a MISA cluster you might enjoy.
-```
+## Four types we will use
 
-Python runs the file top to bottom. Changing the saved file does not change a program that's already running: run it again to see the edit.
-
-## A quick check on values
-
-Use a separate `scratch.py` file in `workshop` for short experiments. Run it with `python3 scratch.py` or `py scratch.py`. These lines show the four types we'll use:
+Replace the contents of `scratch.py` with:
 
 ```python title="workshop/scratch.py"
 name = "Alex"       # str: text
 points = 2          # int: a whole number
 share = 12.5        # float: a number with a decimal part
 ready = True        # bool: True or False
-print(type(name), type(points), type(share), type(ready))
+
+print(type(name))
+print(type(points))
+print(type(share))
+print(type(ready))
+```
+
+The output names the types `str`, `int`, `float`, and `bool`. Python treats `"2"` as text and `2` as a number. Conversion functions let you change a compatible value:
+
+```python title="Try next in scratch.py"
 print("2" + "3")
 print(int("2") + 3)
 print(float("2.5"))
-print(str(points) + " points")
+print(str(2) + " points")
 ```
 
-The first line of output names `str`, `int`, `float`, and `bool`. The remaining lines print `23`, `5`, `2.5`, and `2 points`. Quotes matter: `"2"` is text, while `2` is a number. `int()`, `float()`, and `str()` convert values. `int("hello")` raises `ValueError` because that text isn't an integer.
+These lines print `23`, `5`, `2.5`, and `2 points`. `int("hello")` would raise a `ValueError` because that text cannot become an integer.
 
-An **expression**, like `points + 1`, produces a value. A **statement**, like `points = points + 1`, tells Python to do something with it.
+## Input gives the program a value
+
+`input()` prints a prompt, pauses the program, and returns what the person typed as a string. Try it in `scratch.py`:
+
+```python title="workshop/scratch.py"
+name = input("What should we call you? ")
+print("Hi, " + name + "!")
+```
+
+The `+` signs join strings. If you type `Alex`, the program prints `Hi, Alex!`.
+
+## Apply it to the quiz
+
+Now replace all of `workshop/quiz.py` with:
+
+```python title="workshop/quiz.py"
+print("Welcome to the MISA Cluster Finder!")
+name = input("What should we call you? ")
+print()
+print("Hi, " + name + "!")
+print("Answer a few questions to find MISA clusters you may enjoy.")
+```
+
+Save the file. Run `python3 quiz.py` on macOS or `py quiz.py` on Windows from the `workshop` folder.
+
+```text title="Expected output"
+Welcome to the MISA Cluster Finder!
+What should we call you? Alex
+
+Hi, Alex!
+Answer a few questions to find MISA clusters you may enjoy.
+```
+
+Saving a changed file does not affect a program that is already running. Run it again to see the new version.
 
 ## Save a working version
 
-Git commits are a little like named points in Google Docs version history. Git records only what you stage and commit; it doesn't automatically record every edit or upload it.
+Git commits are similar to named points in Google Docs version history. Git records only what you stage and commit. It does not automatically record every edit or upload it.
 
 From the `workshop` folder:
 

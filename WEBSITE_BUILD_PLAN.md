@@ -45,22 +45,24 @@ Required interface:
 
 ## Content structure and writing contract
 
-Broad sections: welcome/destination, setup and fallback, ordered project milestones, troubleshooting, and moving forward. The exact lesson titles and number of pages belong to implementation, following the progression in the workshop plan.
+Broad sections: welcome/destination, a short Python orientation, a Git and GitHub orientation, setup and fallback, ordered project milestones, troubleshooting, and moving forward. The exact lesson titles and number of pages belong to implementation, following the progression in the workshop plan.
 
-Every build milestone should make the following easy to identify:
+Every build milestone follows this teaching order:
 
 1. What the learner is about to make work.
-2. The minimum explanation and essential terms needed now.
-3. The file being edited and precisely where the change belongs.
-4. Copyable code and how to run it.
-5. Expected output or behavior and one short check when useful.
-6. The matching recovery checkpoint and a link to safe recovery instructions.
+2. The concept and essential terms explained independently of the quiz.
+3. A small example in `scratch.py`, with a prediction or change when useful.
+4. A focused application snippet and its exact location in the learner file.
+5. The run command, expected behavior, and one short check.
+6. The full working file inside the final checkpoint or recovery section.
+
+Do not place a long complete project file in the middle of a lesson. Break the application into the smallest meaningful parts, then keep the full version available at the bottom for comparison and recovery.
 
 Use plain, beginner-friendly English, short paragraphs, descriptive headings, and focused bullets. Format cleanly. Explain new syntax before relying on it; do not substitute vague friendly wording for a necessary explanation. Apply the supplied humanizer to website and quiz text. Use familiar analogies only when useful, and briefly explain their limits.
 
 Git analogy: Google Docs version history helps introduce commits; a shared Drive location helps introduce GitHub. Explicitly explain that saving a file, committing locally, and pushing online are different actions, not automatic synchronization.
 
-Code examples must favor understandable steps over brevity: descriptive variables, intermediate values, ordinary loops, and small named functions. Avoid lambdas, comprehensions, and compressed expressions in the required path. Do not require typing bulk quiz data. Introduce one example, then provide the question bank to copy.
+Code examples must favor understandable steps over brevity: descriptive variables, intermediate values, ordinary loops, and small named functions. Avoid lambdas, comprehensions, and compressed expressions in the required path. Do not require typing bulk quiz data. Introduce one example, provide the initial bank to copy, then add the complete 15-question weighted bank at `06-improve`.
 
 Code blocks must identify Python versus shell, include copy controls with feedback, and copy executable text without line numbers, prompts, or diff markers. Distinguish replacement blocks from additions. Keep full working checkpoint versions available so a partial snippet never leaves students guessing about file state.
 
@@ -97,7 +99,7 @@ Include GitHub publishing/further Git practice, general tips, suitable videos/re
 1. Read both plans and supplied reference materials; audit essential coverage and source restrictions.
 2. Choose the static documentation stack, define the shared milestone mapping, and scaffold the site and themes.
 3. Implement navigation, search, copyable code, lesson templates, and visualization components.
-4. Author original lessons alongside executable project checkpoints and the notebook. Apply the humanizer to learner-facing text.
+4. Author concept-first lessons alongside executable project checkpoints and the notebook. Apply the humanizer to learner-facing text.
 5. Add setup/help and the moving-forward roadmap; verify references and remove placeholders once source inputs arrive.
 6. Rehearse the website as the teaching surface, correct pacing and code drift, and document Vercel readiness without deploying it.
 7. Complete the private-source cleanup specified in the workshop plan before public publication.
@@ -107,7 +109,7 @@ Include GitHub publishing/further Git practice, general tips, suitable videos/re
 - Production build succeeds; direct lesson URLs, anchors, search, previous/next navigation, and repository/checkpoint links work.
 - Both themes, copy controls, keyboard navigation, mobile navigation, and projector-scale readability are checked.
 - Copied snippets run in the stated checkpoint/file context and agree with expected output.
-- Steppers correctly show intermediate state and output; Reset restores the starting state.
+- Steppers correctly show loop state, equal awards, and weighted awards; Reset restores the starting state.
 - A learner can follow independently, and presenters can teach the live path without needing a second instructional slide deck.
 - Site content is original, essential basics are not silently omitted, and remaining topics have a compact follow-up route.
 - No supplied professor notes are bundled, indexed, published, or retained in the public repository history.
