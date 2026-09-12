@@ -1,7 +1,9 @@
 from questions import CLUSTERS, QUESTIONS
 
 
-def ask_question(question):
+def ask_question(question, question_number, total_questions):
+    print()
+    print("Question " + str(question_number) + " of " + str(total_questions))
     print(question["prompt"])
     choices = question["choices"]
     for letter in choices:
@@ -32,7 +34,7 @@ def show_results(scores):
     ordered_clusters = sorted(scores, key=score_for_cluster, reverse=True)
     rank = 0
     previous_score = None
-    print("Your results: top three score levels")
+    print("Here are your top MISA cluster matches:")
     for cluster in ordered_clusters:
         points = scores[cluster]
         if points == 0:
@@ -51,21 +53,28 @@ def show_results(scores):
             tie_label = " (tied)"
 
         percentage = points / total_points * 100
+        print()
         print(f"{rank}. {cluster}{tie_label} | {percentage:.1f}% of quiz points")
         print(CLUSTERS[cluster])
         previous_score = points
 
 
 def run_quiz():
-    name = "Alex"
+    print("Welcome to the MISA Cluster Finder!")
+    name = input("What should we call you? ")
+    print()
     print("Hi, " + name + "!")
+    print("Answer a few questions to find MISA clusters you may enjoy.")
     scores = {}
     for cluster in CLUSTERS:
         scores[cluster] = 0
+    question_number = 1
     for question in QUESTIONS:
-        answer = ask_question(question)
+        answer = ask_question(question, question_number, len(QUESTIONS))
         selected_choice = question["choices"][answer]
         award_points(scores, selected_choice["clusters"])
+        question_number += 1
+    print()
     show_results(scores)
 
 
