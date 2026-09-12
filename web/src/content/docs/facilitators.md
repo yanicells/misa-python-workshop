@@ -11,15 +11,16 @@ Use the website as the teaching surface, including introductions and closing. He
 | --- | ---: | --- |
 | Introductions and destination | 5 | Show a finished quiz run |
 | Setup and starting branch | 6 | Everyone sees the starter message |
-| Greeting, values, first commit | 8 | Name changed and committed |
+| Greeting, values, first commit | 8 | Name prompt works and is committed |
 | One question and validation | 10 | Invalid answer retries |
-| Data, loops, and scoring | 13 | All seven questions work |
+| Data, loops, and scoring | 13 | Seven numbered questions work |
 | Functions | 8 | Refactor preserves the score dictionary |
 | Percentages and tied ranks | 10 | All-a answers show seven tied results |
-| Test and personalize | 7 | A neighbor tries the quiz |
+| Improve the quiz | 8 | Fifteen weighted questions award 45 points |
+| Test and personalize | 7 | A neighbor tries the finished quiz |
 | Closing | 3 | Point to the follow-up guide |
 
-Total target: 70 minutes. Reserve up to 20 more minutes for setup, recovery, and personalization. This schedule needs a timed human rehearsal; automated runs don't measure how long beginners need.
+Total target: 78 minutes. Reserve up to 12 more minutes for setup, recovery, and personalization. This schedule needs a timed human rehearsal; automated runs do not measure how long beginners need.
 
 ## Introductions with Python
 
@@ -40,15 +41,15 @@ for number in selected:
 
 ## Before people arrive
 
-Verify a fresh clone, all checkpoint commands, the final Colab link, and a saved personal notebook copy. Check Windows and macOS on actual laptops. Run the production site and test search, copy buttons, both themes, mobile navigation, and the steppers. Browser testing and Python checks in the repository help, but they don't replace a projector check or a timed rehearsal.
+Verify a fresh clone, all checkpoint commands, the final Colab link, and a saved personal notebook copy. Check Windows and macOS on actual laptops. Run the production site and test search, copy buttons, both themes, mobile navigation, and the steppers. Browser testing and Python checks in the repository help, but they do not replace a projector check or a timed rehearsal.
 
-`main` must hold the guide, not the completed learner project. Publish all six checkpoint branches before sharing setup commands. If the site is connected to Vercel, use `main` for production; Yani handles that setup and deployment separately. Before sharing the repository, manually confirm that temporary teaching inputs are absent from every public branch and from the build output.
+`main` must hold the guide, not the completed learner project. Publish all seven checkpoint branches before sharing setup commands. If the site is connected to Vercel, use `main` for production; Yani handles that setup and deployment separately. Before sharing the repository, manually confirm that temporary teaching inputs are absent from every public branch and from the build output.
 
 ## During the build
 
 Pause after a run succeeds. Explain the next piece immediately before students use it. After copying the bank, ask one student to trace a chosen answer's cluster list; that matters more than typing the data.
 
-Use the all-a run to explain why seven results can share rank 1. Use the fixture on the test page to show a tie at rank 3. If time slips, cut repeated demonstrations and optional edits first. Keep the essential values, operators, conditions, loops, and completed results path.
+Use the all-a run at checkpoint 05 to explain why seven results can share rank 1. On the final checkpoint, trace one answer that gives 2 primary points and 1 related point. Use the fixture on the test page to show a tie at rank 3. If time slips, cut repeated demonstrations and optional edits first. Keep the essential values, operators, conditions, loops, and completed results path.
 
 ## Sources and writing
 

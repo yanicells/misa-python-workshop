@@ -1,0 +1,121 @@
+---
+title: 06 · Improve your quiz
+description: Expand to 15 questions and give stronger cluster matches more weight.
+---
+import Checkpoint from '../../../components/Checkpoint.astro';
+import Stepper from '../../../components/Stepper.astro';
+import { Code } from '@astrojs/starlight/components';
+import data from '../../../examples/06-improve/questions.txt?raw';
+
+The seven-question version can produce many broad ties. This final build step adds more situations and records a stronger and supporting match for every choice.
+
+## Store different point values
+
+Earlier, each choice held a list of cluster names. A dictionary can also map each name to the number of points it should receive.
+
+Try the idea outside the quiz:
+
+```python title="workshop/scratch.py"
+snack_points = {
+    "sweet": 2,
+    "warm": 1,
+}
+
+scores = {"sweet": 0, "warm": 0}
+
+for quality in snack_points:
+    scores[quality] += snack_points[quality]
+
+print(scores)
+```
+
+The loop visits the keys `"sweet"` and `"warm"`. It uses each key to retrieve the matching point value, so the final scores are `2` and `1`.
+
+## Give each answer a primary and related match
+
+One final quiz choice now has this shape:
+
+```python title="One weighted choice"
+choice = {
+    "text": "Create the event look and a welcome post for members.",
+    "points": {
+        "COMMS": 2,
+        "HR": 1,
+    },
+}
+```
+
+Communications is the closest match and receives 2 points. Human Resources is related and receives 1. Every answer in the final bank awards 3 points in total, so a 15-question run always awards 45 points.
+
+We are keeping one input per question instead of subtracting points for a least-likely answer. Negative scores would make totals, percentages, and ties harder to explain. More questions plus small positive weights give the quiz more variation without changing how the player answers.
+
+## Update the scoring function
+
+Replace `award_points` in `quiz.py` with:
+
+```python title="Replace award_points in workshop/quiz.py"
+def award_points(scores, points_to_award):
+    for cluster in points_to_award:
+        scores[cluster] += points_to_award[cluster]
+```
+
+Then change the call inside `run_quiz()`:
+
+```python title="Replace the award_points call"
+award_points(scores, selected_choice["points"])
+```
+
+The function no longer assumes that every cluster gains exactly one point.
+
+<Stepper kind="weighted" />
+
+## Show full cluster names
+
+The final `CLUSTERS` dictionary stores a display name and description for each short code. In `show_results`, retrieve both before printing:
+
+```python title="Inside the results loop"
+display_name = CLUSTERS[cluster]["name"]
+description = CLUSTERS[cluster]["description"]
+print()
+print(f"{rank}. {display_name} ({cluster}){tie_label} | {percentage:.1f}% of quiz points")
+print(description)
+```
+
+The short codes stay useful as dictionary keys, while the player sees names such as `Office of the Secretary General (OSG)`.
+
+## Copy the final question bank
+
+Replace all of `workshop/questions.py` with the complete 15-question bank below. The questions include project situations, member support, partnership work, event planning, and a few lighter personality prompts.
+
+<details>
+<summary>Copy the final questions.py file</summary>
+<Code code={data} lang="python" title="workshop/questions.py" />
+</details>
+
+The weighted scoring opportunities are balanced: five clusters have 26 possible points across the whole bank, and two have 25. That one-point difference is the smallest possible because 180 available points cannot divide evenly among seven clusters.
+
+## Polish the welcome
+
+The final version cleans the name and retries a blank entry:
+
+```python title="At the start of run_quiz"
+print("Welcome to the MISA Cluster Finder!")
+name = input("What should we call you? ").strip()
+while name == "":
+    print("Please enter a name or nickname.")
+    name = input("What should we call you? ").strip()
+
+print()
+print("Hi, " + name + "!")
+print("Choose the answer that feels most like you.")
+```
+
+The question function already prints `Question 1 of 15`, adds blank lines between questions, and accepts uppercase or padded answers.
+
+## Run and check
+
+Run the quiz and confirm that it asks for a name, labels all 15 questions, retries invalid input, and prints full cluster names. Each complete run should award 45 total points, although the top three displayed score levels may account for only part of that total.
+
+The result is a playful conversation starter based on broad MISA cluster work. It does not measure personality or decide which cluster someone should join.
+
+<Checkpoint id="06-improve" />

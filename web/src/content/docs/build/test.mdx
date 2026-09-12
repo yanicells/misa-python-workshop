@@ -1,35 +1,36 @@
 ---
-title: 06 · Test and personalize
+title: 07 · Test and personalize
 description: Check your finished quiz, change one question, and save a version you can share.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
 
-Your quiz can now ask questions, award points, and describe the results. Let someone else try it before you make your final commit.
+Your finished quiz asks 15 questions, awards weighted points, and describes the top matches. Let someone else try it before you make your final commit.
 
 ## Try inputs on purpose
 
 | Try this | What should happen |
 | --- | --- |
-| Enter `z`, an empty answer, then ` A ` | Retry the first two, accept `a`, and award points once |
-| Choose `a` seven times | All seven clusters tie at rank 1 |
-| Choose an answer with two clusters | Both clusters gain one point |
+| Submit a blank name, then enter a nickname | Retry the blank entry and greet the player by the nickname |
+| Enter `z`, then ` A ` for a question | Retry `z`, clean the second answer to `a`, and award points once |
+| Complete all 15 questions | Show question numbers from 1 through 15 and award 45 total points |
+| Choose any answer | Give its primary cluster 2 points and its related cluster 1 point |
 | Run again | Scores start at zero |
 
 To check a tie at the third rank, temporarily replace `run_quiz()` on the final indented line of `quiz.py` with this call. Keep its four-space indentation:
 
 ```python title="Temporary final line of workshop/quiz.py"
-    show_results({"COMMS": 5, "OSG": 4, "MKT": 3, "OET": 3, "Events": 3, "eServs": 2, "HR": 0})
+    show_results("Alex", {"COMMS": 5, "OSG": 4, "MKT": 3, "OET": 3, "Events": 3, "eServs": 2, "HR": 0})
 ```
 
-You should see COMMS at rank 1 with 25.0%, OSG at rank 2 with 20.0%, and MKT, OET, and Events tied at rank 3 with 15.0% each. eServs and HR stay out of the displayed results. Try `show_results({})` in the same place: it should say `No points yet` instead of crashing. Restore `run_quiz()` afterward.
+You should see Communications at rank 1 with 25.0%, Office of the Secretary General at rank 2 with 20.0%, and Marketing, Office of the Executive Treasurer, and Events tied at rank 3 with 15.0% each. eServices and Human Resources stay out of the displayed results. Try `show_results("Alex", {})` in the same place: it should say `No points yet` instead of crashing. Restore `run_quiz()` afterward.
 
 ## Make one change
 
-In `questions.py`, change one question or answer's wording to something your friends would recognize. Keep the dictionary keys and cluster lists as they are for your first edit. Read the result aloud. Does it sound like something you would say?
+In `questions.py`, change one question or answer's wording to something your friends would recognize. Keep the dictionary keys and point mappings as they are for your first edit. Read the result aloud. Does it sound like something you would say?
 
-If you change a cluster association later, each choice must list one or two different existing cluster names. Changing those associations also changes the scoring balance. Our original bank has one possible point per cluster in each question. That measures opportunities, not how often real people will select an answer.
+If you change a point mapping later, keep two different existing cluster codes and a total of 3 points. Changing those associations also changes the scoring balance. Balanced opportunities do not predict how often people will choose an answer.
 
-You can also change the name inside `run_quiz()` or use `input("Your name: ")` instead. Avoid asking for student IDs or other details the quiz doesn't need.
+You can also change the welcome wording. Avoid asking for student IDs or other details the quiz does not need.
 
 ## Save the finished version
 
@@ -45,4 +46,4 @@ Tell a neighbor which question you changed. Trade laptops or run your quiz for t
 
 If an edit breaks the file, read the last line of the error and the named line number first. The [help page](../../help/) explains common errors. [Recovery checkpoints](../../checkpoints/) are there if you need a working reference while keeping your version safe.
 
-<Checkpoint id="05-results" />
+<Checkpoint id="06-improve" />

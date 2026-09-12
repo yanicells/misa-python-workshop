@@ -11,34 +11,41 @@
     "lesson": "build/welcome",
     "files": ["quiz.py"],
     "run": "python3 quiz.py",
-    "expected": "Hi, Alex!"
+    "expected": "What should we call you?"
   },
   {
     "id": "02-question",
     "lesson": "build/question",
     "files": ["quiz.py"],
     "run": "python3 quiz.py",
-    "expected": "eServs earns 1 point."
+    "expected": "Question 1 of 1"
   },
   {
     "id": "03-loops",
     "lesson": "build/loops",
     "files": ["quiz.py", "questions.py"],
     "run": "python3 quiz.py",
-    "expected": "{'COMMS': 1, 'OSG': 1, 'MKT': 1, 'OET': 1, 'Events': 1, 'eServs': 1, 'HR': 1}"
+    "expected": "Question 1 of 7"
   },
   {
     "id": "04-functions",
     "lesson": "build/functions",
     "files": ["quiz.py", "questions.py"],
     "run": "python3 quiz.py",
-    "expected": "{'COMMS': 1, 'OSG': 1, 'MKT': 1, 'OET': 1, 'Events': 1, 'eServs': 1, 'HR': 1}"
+    "expected": "Question 1 of 7"
   },
   {
     "id": "05-results",
     "lesson": "build/results",
     "files": ["quiz.py", "questions.py"],
     "run": "python3 quiz.py",
-    "expected": "1. COMMS (tied) | 14.3% of quiz points"
+    "expected": "Here are your top MISA cluster matches:"
+  },
+  {
+    "id": "06-improve",
+    "lesson": "build/improve",
+    "files": ["quiz.py", "questions.py"],
+    "run": "python3 quiz.py",
+    "expected": "Question 1 of 15"
   }
 ]
