@@ -1,4 +1,5 @@
-# Change the name to your own.
-name = "Alex"
+print("Welcome to the MISA Cluster Finder!")
+name = input("What should we call you? ")
+print()
 print("Hi, " + name + "!")
-print("Let's find a MISA cluster you might enjoy.")
+print("Answer a few questions to find MISA clusters you may enjoy.")
