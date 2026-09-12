@@ -3,10 +3,10 @@ CLUSTERS = {
     "COMMS": "You might enjoy designing visuals, taking photos, or editing videos for MISA.",
     "OSG": "You might enjoy organizing documents and keeping project operations in order.",
     "MKT": "You might enjoy reaching out to partners and building MISA's network.",
-    "OET": "You might enjoy planning budgets and keeping track of project finances.",
-    "Events": "You might enjoy planning programs and sorting out event logistics.",
-    "eServs": "You might enjoy designing and building IT solutions for clients.",
-    "HR": "You might enjoy helping members get to know each other and feel included.",
+    "OET": "You might enjoy planning budgets, working with suppliers, and keeping financial records clear.",
+    "Events": "You might enjoy planning programs, preparing logistics, and running dry runs.",
+    "eServs": "You might enjoy building websites and IT solutions, documenting systems, or helping others use technology.",
+    "HR": "You might enjoy supporting members through community activities, mentorship, and wellbeing work.",
 }
 
 QUESTIONS = [
@@ -42,7 +42,7 @@ QUESTIONS = [
         "choices": {
             "a": {"text": "Work out the order of activities for our event.", "clusters": ["Events"]},
             "b": {"text": "Turn scattered notes into a clear, readable project guide.", "clusters": ["COMMS", "OSG"]},
-            "c": {"text": "Welcome guests and help them meet our members.", "clusters": ["MKT", "HR"]},
+            "c": {"text": "Welcome partner guests and help them meet our members.", "clusters": ["MKT", "HR"]},
             "d": {"text": "Build a simple tool for checking project expenses.", "clusters": ["OET", "eServs"]},
         },
     },
