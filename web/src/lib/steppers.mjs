@@ -14,3 +14,9 @@ export function scoreState(step) {
  const scores = {Events:position>=2?1:0,OSG:position>=4?1:0};
  return {cluster:position===0?null:position<=2?'Events':'OSG', scores, total:scores.Events+scores.OSG, done:position===5,line:position===0?0:position%2?1:2};
 }
+
+export function weightedState(step) {
+ const position = Math.max(0,Math.min(5,step));
+ const scores = {COMMS:position>=2?2:0,HR:position>=4?1:0};
+ return {cluster:position===0?null:position<=2?'COMMS':'HR', scores, total:scores.COMMS+scores.HR, done:position===5,line:position===0?0:position%2?1:2};
+}

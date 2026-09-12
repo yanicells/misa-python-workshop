@@ -15,12 +15,12 @@ def ask_question(question, question_number, total_questions):
     return answer
 
 
-def award_points(scores, clusters):
-    for cluster in clusters:
-        scores[cluster] += 1
+def award_points(scores, points_to_award):
+    for cluster in points_to_award:
+        scores[cluster] += points_to_award[cluster]
 
 
-def show_results(scores):
+def show_results(name, scores):
     total_points = 0
     for cluster in scores:
         total_points += scores[cluster]
@@ -34,7 +34,7 @@ def show_results(scores):
     ordered_clusters = sorted(scores, key=score_for_cluster, reverse=True)
     rank = 0
     previous_score = None
-    print("Here are your top MISA cluster matches:")
+    print(name + ", here are your top MISA cluster matches:")
     for cluster in ordered_clusters:
         points = scores[cluster]
         if points == 0:
@@ -53,29 +53,38 @@ def show_results(scores):
             tie_label = " (tied)"
 
         percentage = points / total_points * 100
+        display_name = CLUSTERS[cluster]["name"]
+        description = CLUSTERS[cluster]["description"]
         print()
-        print(f"{rank}. {cluster}{tie_label} | {percentage:.1f}% of quiz points")
-        print(CLUSTERS[cluster])
+        print(f"{rank}. {display_name} ({cluster}){tie_label} | {percentage:.1f}% of quiz points")
+        print(description)
         previous_score = points
 
 
 def run_quiz():
     print("Welcome to the MISA Cluster Finder!")
-    name = input("What should we call you? ")
+    name = input("What should we call you? ").strip()
+    while name == "":
+        print("Please enter a name or nickname.")
+        name = input("What should we call you? ").strip()
+
     print()
     print("Hi, " + name + "!")
-    print("Answer a few questions to find MISA clusters you may enjoy.")
+    print("Choose the answer that feels most like you.")
+
     scores = {}
     for cluster in CLUSTERS:
         scores[cluster] = 0
+
     question_number = 1
     for question in QUESTIONS:
         answer = ask_question(question, question_number, len(QUESTIONS))
         selected_choice = question["choices"][answer]
-        award_points(scores, selected_choice["clusters"])
+        award_points(scores, selected_choice["points"])
         question_number += 1
+
     print()
-    show_results(scores)
+    show_results(name, scores)
 
 
 if __name__ == "__main__":
