@@ -2,9 +2,13 @@
 
 from collections import Counter
 from pathlib import Path
+import contextlib
+import io
 import subprocess
 import sys
 import tempfile
+
+from build_notebook import build_notebook
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -103,11 +107,39 @@ def validate_runs():
     assert "Events (Events)" not in final_output
 
 
+def validate_notebook():
+    answers_by_checkpoint = {
+        "00-start": [],
+        "01-welcome": ["Alex"],
+        "02-question": ["Alex", "a"],
+        "03-loops": ["Alex"] + ["a"] * 7,
+        "04-functions": ["Alex"] + ["a"] * 7,
+        "05-results": ["Alex"] + ["a"] * 7,
+        "06-improve": ["Alex"] + ["a"] * 15,
+    }
+    notebook = build_notebook("06-improve")
+
+    for index in range(1, len(notebook["cells"]), 2):
+        heading = "".join(notebook["cells"][index]["source"]).splitlines()[0]
+        checkpoint = heading.removeprefix("## ")
+        source = "".join(notebook["cells"][index + 1]["source"])
+        assert "from questions import" not in source
+
+        answers = iter(answers_by_checkpoint[checkpoint])
+        namespace = {
+            "__name__": "__main__",
+            "input": lambda _prompt="": next(answers),
+        }
+        with contextlib.redirect_stdout(io.StringIO()):
+            exec(compile(source, f"{checkpoint} notebook cell", "exec"), namespace)
+
+
 def main():
     validate_python_syntax()
     validate_early_question_bank()
     validate_weighted_question_bank()
     validate_runs()
+    validate_notebook()
     print("Workshop examples passed syntax, data, balance, and interaction checks.")
 
 
