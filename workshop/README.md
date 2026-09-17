@@ -14,7 +14,7 @@ Run commands from this `workshop` folder: `python3 quiz.py` on macOS or `py quiz
 <!-- CHECKPOINTS:START -->
 | Checkpoint | Lesson |
 | --- | --- |
-| [00-start](https://github.com/yanicells/misa-python-workshop/tree/00-start/workshop) | [Guide](../web/src/content/docs/setup.mdx) |
+| [00-start](https://github.com/yanicells/misa-python-workshop/tree/00-start/workshop) | [Guide](../web/src/content/docs/build/welcome.mdx) |
 | [01-welcome](https://github.com/yanicells/misa-python-workshop/tree/01-welcome/workshop) | [Guide](../web/src/content/docs/build/welcome.mdx) |
 | [02-question](https://github.com/yanicells/misa-python-workshop/tree/02-question/workshop) | [Guide](../web/src/content/docs/build/question.mdx) |
 | [03-loops](https://github.com/yanicells/misa-python-workshop/tree/03-loops/workshop) | [Guide](../web/src/content/docs/build/loops.mdx) |
