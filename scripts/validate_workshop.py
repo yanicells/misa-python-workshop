@@ -84,7 +84,7 @@ def validate_weighted_question_bank():
 
 
 def validate_runs():
-    assert "Your MISA quiz starts here." in run_checkpoint("00-start", "")
+    assert "Hello, world!" in run_checkpoint("00-start", "")
     assert "Hi, Alex!" in run_checkpoint("01-welcome", "Alex\n")
 
     question_output = run_checkpoint("02-question", "Alex\nz\n A \n")

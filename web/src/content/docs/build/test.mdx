@@ -16,10 +16,10 @@ Your finished quiz asks 15 questions, awards weighted points, and describes the 
 | Choose any answer | Give its primary cluster 2 points and its related cluster 1 point |
 | Run again | Scores start at zero |
 
-To check a tie at the third rank, temporarily replace `run_quiz()` on the final indented line of `quiz.py` with this call. Keep its four-space indentation:
+To check a tie at the third rank, temporarily replace the final `run_quiz()` line of `quiz.py` with this call:
 
 ```python title="Temporary final line of workshop/quiz.py"
-    show_results("Alex", {"COMMS": 5, "OSG": 4, "MKT": 3, "OET": 3, "Events": 3, "eServs": 2, "HR": 0})
+show_results("Alex", {"COMMS": 5, "OSG": 4, "MKT": 3, "OET": 3, "Events": 3, "eServs": 2, "HR": 0})
 ```
 
 You should see Communications at rank 1 with 25.0%, Office of the Secretary General at rank 2 with 20.0%, and Marketing, Office of the Executive Treasurer, and Events tied at rank 3 with 15.0% each. eServices and Human Resources stay out of the displayed results. Try `show_results("Alex", {})` in the same place: it should say `No points yet` instead of crashing. Restore `run_quiz()` afterward.
