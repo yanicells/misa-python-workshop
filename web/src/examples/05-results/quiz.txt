@@ -24,9 +24,6 @@ def show_results(scores):
     total_points = 0
     for cluster in scores:
         total_points += scores[cluster]
-    if total_points == 0:
-        print("No points yet. Answer a question and try again.")
-        return
 
     def score_for_cluster(cluster):
         return scores[cluster]
