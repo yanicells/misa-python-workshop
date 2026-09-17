@@ -5,12 +5,6 @@ description: See what Python can make, why beginners learn it, and how a program
 
 Python is a programming language. You write instructions in a text file, then the Python interpreter reads and runs them. A file ending in `.py` is a Python file.
 
-## Interpreted or compiled?
-
-A compiler translates code into another form before it runs. An interpreter runs code through another program. Python is usually called an interpreted language because you run a `.py` file with Python instead of compiling a separate app first.
-
-The full answer has one extra step: CPython, the version most people use, first compiles your code into bytecode. Its interpreter then runs that bytecode. For this workshop, the useful idea is simple: save the file, run `python3 quiz.py` or `py quiz.py`, and Python handles the rest.
-
 The language is used for web applications, automation, data analysis, scientific computing, and machine learning. Python.org lists tools for all of these areas, from Django and Flask for websites to pandas and SciPy for working with data. [Browse Python's application guide](https://www.python.org/about/apps/) when you want to see the wider ecosystem.
 
 ## Python shows up in familiar products
@@ -21,6 +15,10 @@ Instagram has described using Python and Django for its frontend server. Spotify
 - [How Spotify has used Python](https://engineering.atspotify.com/2013/3/how-we-use-python-at-spotify/)
 
 In the 2024 Python Developers Survey, respondents reported using Python for web development, data analysis, machine learning, automation, research, and education. The same survey found that 48% used VS Code as their main editor. It surveyed more than 30,000 Python developers and learners from almost 200 countries and regions. [See the survey results](https://lp.jetbrains.com/python-developers-survey-2024/).
+
+## Compiled or interpreted?
+
+Compiled languages translate code before running it. Interpreted languages run code through an interpreter. Python is interpreted.
 
 ## What we will make
 
