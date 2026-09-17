@@ -4,7 +4,7 @@ print("Welcome to the MISA Cluster Finder!")
 name = input("What should we call you? ")
 print()
 print("Hi, " + name + "!")
-print("Answer a few questions to find MISA clusters you may enjoy.")
+print("Choose the answer that feels most like you.")
 scores = {}
 for cluster in CLUSTERS:
     scores[cluster] = 0
