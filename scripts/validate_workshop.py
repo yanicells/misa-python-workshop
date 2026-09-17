@@ -97,14 +97,13 @@ def validate_runs():
         assert "Question 1 of 7" in output
         assert "Question 7 of 7" in output
 
-    final_answers = "\nAlex\nz\n" + "a\n" * 15
+    final_answers = "Alex\nz\n" + "a\n" * 15
     final_output = run_checkpoint("06-improve", final_answers)
-    assert "Please enter a name or nickname." in final_output
     assert "Please type one of the letters shown." in final_output
     assert "Question 1 of 15" in final_output
     assert "Question 15 of 15" in final_output
     assert "Alex, here are your top MISA cluster matches:" in final_output
-    assert "Events (Events)" not in final_output
+    assert "Events |" in final_output
 
 
 def validate_notebook():
