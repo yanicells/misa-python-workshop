@@ -42,7 +42,7 @@ export default defineConfig({
         {label:'Event budget checker',slug:'projects/event-budget'},
         {label:'Question-bank editor',slug:'projects/question-bank-editor'}
       ] },
-      { label: 'Keep these handy', collapsed: false, items: [{label:'Checkpoints and recovery',slug:'checkpoints'},{label:'Troubleshooting',slug:'help'},{label:'For facilitators',slug:'facilitators'},{label:'Open Colab notebook',link:'https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb'}] }
+      { label: 'Keep these handy', collapsed: false, items: [{label:'Checkpoints and recovery',slug:'checkpoints'},{label:'Troubleshooting',slug:'help'},{label:'Open Colab notebook',link:'https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb'}] }
     ]
   })]
 });
