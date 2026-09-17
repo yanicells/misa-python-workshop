@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLES = ROOT / "web" / "src" / "examples"
 CHECKPOINTS = [
-    ("00-start", "setup.mdx"),
+    ("00-start", "build/welcome.mdx"),
     ("01-welcome", "build/welcome.mdx"),
     ("02-question", "build/question.mdx"),
     ("03-loops", "build/loops.mdx"),
