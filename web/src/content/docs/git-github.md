@@ -34,4 +34,4 @@ You will stay on your own branch during the lesson. The checkpoint branches are 
 
 Publishing your version can wait until the quiz works. The [publishing guide](../moving-forward/publishing/) starts on the GitHub website and then shows the few terminal commands needed to upload your branch.
 
-[Next: set up the project →](../setup/)
+[Next: welcome the player →](../build/welcome/)
