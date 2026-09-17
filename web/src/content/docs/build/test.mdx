@@ -10,7 +10,6 @@ Your finished quiz asks 15 questions, awards weighted points, and describes the 
 
 | Try this | What should happen |
 | --- | --- |
-| Submit a blank name, then enter a nickname | Retry the blank entry and greet the player by the nickname |
 | Enter `z`, then ` A ` for a question | Retry `z`, clean the second answer to `a`, and award points once |
 | Complete all 15 questions | Show question numbers from 1 through 15 and award 45 total points |
 | Choose any answer | Give its primary cluster 2 points and its related cluster 1 point |
@@ -19,16 +18,16 @@ Your finished quiz asks 15 questions, awards weighted points, and describes the 
 To check a tie at the third rank, temporarily replace the final `run_quiz()` line of `quiz.py` with this call:
 
 ```python title="Temporary final line of workshop/quiz.py"
-show_results("Alex", {"COMMS": 5, "OSG": 4, "MKT": 3, "OET": 3, "Events": 3, "eServs": 2, "HR": 0})
+show_results("Alex", {"Communications": 5, "Office of the Secretary General": 4, "Marketing": 3, "Office of the Executive Treasurer": 3, "Events": 3, "eServices": 2, "Human Resources": 0})
 ```
 
-You should see Communications at rank 1 with 25.0%, Office of the Secretary General at rank 2 with 20.0%, and Marketing, Office of the Executive Treasurer, and Events tied at rank 3 with 15.0% each. eServices and Human Resources stay out of the displayed results. Try `show_results("Alex", {})` in the same place: it should say `No points yet` instead of crashing. Restore `run_quiz()` afterward.
+You should see Communications at rank 1 with 25.0%, Office of the Secretary General at rank 2 with 20.0%, and Marketing, Office of the Executive Treasurer, and Events tied at rank 3 with 15.0% each. eServices and Human Resources stay out of the displayed results. Restore `run_quiz()` afterward.
 
 ## Make one change
 
 In `questions.py`, change one question or answer's wording to something your friends would recognize. Keep the dictionary keys and point mappings as they are for your first edit. Read the result aloud. Does it sound like something you would say?
 
-If you change a point mapping later, keep two different existing cluster codes and a total of 3 points. Changing those associations also changes the scoring balance. Balanced opportunities do not predict how often people will choose an answer.
+If you change a point mapping later, keep two different existing cluster names and a total of 3 points. Changing those associations also changes the scoring balance. Balanced opportunities do not predict how often people will choose an answer.
 
 You can also change the welcome wording. Avoid asking for student IDs or other details the quiz does not need.
 

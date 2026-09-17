@@ -47,11 +47,11 @@ The outputs are `['lists', 'loops', 'functions']`, the first two topics, and the
 Assignment does not copy a list. It gives the same list another name.
 
 ```python
-original = ["COMMS", "HR"]
+original = ["Communications", "Human Resources"]
 same_list = original
 separate_list = original[:]
 
-original.append("MKT")
+original.append("Marketing")
 print(same_list)
 print(separate_list)
 ```
@@ -76,10 +76,10 @@ The second line **unpacks** the two positions into two variables. A tuple is use
 Assigning a new key creates an entry. `del` removes one.
 
 ```python
-scores = {"COMMS": 2, "HR": 1}
-scores["MKT"] = 3
-print("HR" in scores)
-del scores["HR"]
+scores = {"Communications": 2, "Human Resources": 1}
+scores["Marketing"] = 3
+print("Human Resources" in scores)
+del scores["Human Resources"]
 print(len(scores))
 ```
 
