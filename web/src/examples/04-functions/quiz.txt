@@ -39,5 +39,4 @@ def run_quiz():
     print(scores)
 
 
-if __name__ == "__main__":
-    run_quiz()
+run_quiz()

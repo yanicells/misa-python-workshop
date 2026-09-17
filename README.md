@@ -14,7 +14,7 @@ git checkout -b my-quiz
 cd workshop
 ```
 
-Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see `Your MISA quiz starts here.` You need Python 3.10 or newer and Git. Students do not need Node.js.
+Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see `Hello, world!` You need Python 3.10 or newer and Git. Students do not need Node.js.
 
 `main` contains the guide and website examples. The learner files start on `00-start`; the finished 15-question weighted quiz is on `06-improve`. Stay on your own branch as you edit. Save and commit your work before using a reference checkpoint.
 
