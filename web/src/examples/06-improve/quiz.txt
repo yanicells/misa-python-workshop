@@ -24,9 +24,6 @@ def show_results(name, scores):
     total_points = 0
     for cluster in scores:
         total_points += scores[cluster]
-    if total_points == 0:
-        print("No points yet. Answer a question and try again.")
-        return
 
     def score_for_cluster(cluster):
         return scores[cluster]
@@ -45,24 +42,15 @@ def show_results(name, scores):
             break
 
         percentage = points / total_points * 100
-        display_name = CLUSTERS[cluster]["name"]
-        description = CLUSTERS[cluster]["description"]
-        display_label = display_name
-        if display_name != cluster:
-            display_label += " (" + cluster + ")"
         print()
-        print(f"{rank}. {display_label} | {percentage:.1f}% of quiz points")
-        print(description)
+        print(f"{rank}. {cluster} | {percentage:.1f}% of quiz points")
+        print(CLUSTERS[cluster])
         previous_score = points
 
 
 def run_quiz():
     print("Welcome to the MISA Cluster Finder!")
-    name = input("What should we call you? ").strip()
-    while name == "":
-        print("Please enter a name or nickname.")
-        name = input("What should we call you? ").strip()
-
+    name = input("What should we call you? ")
     print()
     print("Hi, " + name + "!")
     print("Choose the answer that feels most like you.")
