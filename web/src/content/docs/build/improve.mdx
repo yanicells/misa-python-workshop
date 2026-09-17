@@ -39,8 +39,8 @@ One final quiz choice now has this shape:
 choice = {
     "text": "Create the event look and a welcome post for members.",
     "points": {
-        "COMMS": 2,
-        "HR": 1,
+        "Communications": 2,
+        "Human Resources": 1,
     },
 }
 ```
@@ -69,23 +69,6 @@ The function no longer assumes that every cluster gains exactly one point.
 
 <Stepper kind="weighted" />
 
-## Show full cluster names
-
-The final `CLUSTERS` dictionary stores a display name and description for each short code. In `show_results`, retrieve both before printing:
-
-```python title="Inside the results loop"
-display_name = CLUSTERS[cluster]["name"]
-description = CLUSTERS[cluster]["description"]
-display_label = display_name
-if display_name != cluster:
-    display_label += " (" + cluster + ")"
-print()
-print(f"{rank}. {display_label} | {percentage:.1f}% of quiz points")
-print(description)
-```
-
-The short codes stay useful as dictionary keys. The player sees names such as `Office of the Secretary General (OSG)`, while Events avoids the repeated label `Events (Events)`.
-
 ## Copy the final question bank
 
 Replace all of `workshop/questions.py` with the complete 15-question bank below. The questions include project situations, member support, partnership work, event planning, and a few lighter personality prompts.
@@ -97,16 +80,13 @@ Replace all of `workshop/questions.py` with the complete 15-question bank below.
 
 The weighted scoring opportunities are balanced: five clusters have 26 possible points across the whole bank, and two have 25. That one-point difference is the smallest possible because 180 available points cannot divide evenly among seven clusters.
 
-## Polish the welcome
+## Update the welcome
 
-The final version cleans the name and retries a blank entry:
+The final version changes the instruction before the questions:
 
 ```python title="At the start of run_quiz"
 print("Welcome to the MISA Cluster Finder!")
-name = input("What should we call you? ").strip()
-while name == "":
-    print("Please enter a name or nickname.")
-    name = input("What should we call you? ").strip()
+name = input("What should we call you? ")
 
 print()
 print("Hi, " + name + "!")
@@ -117,7 +97,7 @@ The question function already prints `Question 1 of 15`, adds blank lines betwee
 
 ## Run and check
 
-Run the quiz and confirm that it asks for a name, labels all 15 questions, retries invalid input, and prints full cluster names. Each complete run should award 45 total points, although the top three displayed score levels may account for only part of that total.
+Run the quiz and confirm that it asks for a name, labels all 15 questions, retries invalid answers, and prints full cluster names. Each complete run should award 45 total points, although the top three displayed score levels may account for only part of that total.
 
 The result is a playful conversation starter based on broad MISA cluster work. It does not measure personality or decide which cluster someone should join.
 
