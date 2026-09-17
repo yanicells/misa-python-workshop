@@ -1,102 +1,131 @@
 ---
-title: Set up your workshop folder
-description: Install the tools, get the project from GitHub, and run the starter.
+title: Start with setup
+description: Prepare your computer, get the project, and run your first Python program.
 ---
 import Checkpoint from '../../components/Checkpoint.astro';
 
-## Install the three tools
+Start here as soon as you arrive. Setup can take a few minutes, and getting it out of the way means we can keep coding once the workshop begins.
 
-Install [Python](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads), and [VS Code](https://code.visualstudio.com/download). VS Code is where you'll edit text. Python runs it. Git records versions of your work. You can use another editor if you already have one.
+Choose the section for your computer. Each one includes the full process, so you do not need to switch between Windows and macOS instructions. If you already installed a tool, its install command may tell you that it is already present.
 
-Add Microsoft's [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) to VS Code. It helps VS Code recognize Python files, run programs, and point out common mistakes. [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) adds clearer code suggestions and error hints. The Python extension may install it for you.
+<details>
+<summary>Windows setup</summary>
 
-After installing Python, open VS Code's Command Palette with **Ctrl+Shift+P** on Windows or **Cmd+Shift+P** on macOS. Choose **Python: Select Interpreter**, then select the Python 3 installation you just checked.
+### 1. Install Python, Git, and VS Code
 
-Open a terminal in VS Code with **Terminal → New Terminal**. A terminal accepts commands. Type one command and press Enter. Wait for it to finish before entering the next one. If you see Python's `>>>` prompt, type `exit()` to return to the terminal.
+Open **Windows Terminal** or **PowerShell** from the Start menu. [WinGet](https://learn.microsoft.com/windows/package-manager/winget/) comes with current versions of Windows 10 and 11. Run these commands one at a time:
 
-## Check the installations
+```powershell
+winget install --id Python.Python.3.13 -e
+winget install --id Git.Git -e
+winget install --id Microsoft.VisualStudioCode -e
+```
 
-On Windows, run one line at a time:
+Each command may ask you to accept an agreement or confirm the installation. Close the terminal when all three finish, then open it again so it can find the new programs.
 
-On Windows, check:
+### 2. Check the tools and add the Python extensions
 
 ```powershell
 py --version
 git --version
+code --version
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
 ```
 
-On macOS, run:
+Python should report version 3.10 or newer. Git and VS Code should each print a version too.
 
-```bash
-python3 --version
-git --version
-```
+### 3. Download and open the workshop
 
-The first command should report Python 3.10 or newer. The second should print a Git version. The quiz uses only Python's standard library, so you do not need to install Python packages. You also do not need Node.js or the website dependencies.
+Run one command at a time. If you already cloned the repository, skip `git clone` and open your existing `misa-python-workshop` folder.
 
-Create a [GitHub account](https://github.com/signup) before the event if you want to publish your work later. Cloning a public repository doesn't require an account.
-
-## Get the project
-
-If you already cloned the repository, open that folder and skip to **Open the starter checkpoint**. Do not clone a second copy into the same folder.
-
-### 1. Download the repository
-
-Use `cd` to move to a folder where you keep projects. Then run:
-
-```bash
+```powershell
 git clone https://github.com/yanicells/misa-python-workshop.git
-```
-
-`git clone` downloads the files and their Git history into a new `misa-python-workshop` folder.
-
-### 2. Enter the project folder
-
-```bash
 cd misa-python-workshop
-```
-
-`cd` means change directory. A directory is a folder. Your terminal now runs commands inside the repository.
-
-### 3. Open the starter checkpoint
-
-```bash
 git checkout 00-start
-```
-
-This loads our prepared starting version. A branch is a named line of work in Git.
-
-### 4. Make your own branch
-
-```bash
 git checkout -b my-quiz
-```
-
-The `-b` option creates a branch and switches to it. Keep your changes on `my-quiz` during the workshop. The numbered branches stay available as working references.
-
-### 5. Enter the workshop folder
-
-```bash
 cd workshop
+code .
 ```
 
-This folder contains the Python files you will edit.
+`git clone` downloads the project. The two `checkout` commands load our starting point and create a personal branch named `my-quiz`. `cd` moves into a folder, and `code .` opens the current folder in VS Code.
 
-## Run the starter
+### 4. Select Python and run the starter
 
-Open the repository folder in VS Code with **File → Open Folder**. Select `workshop/quiz.py`. On macOS, run:
-
-```bash
-python3 quiz.py
-```
-
-On Windows:
+In VS Code, press **Ctrl+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Open **Terminal → New Terminal**, then run:
 
 ```powershell
 py quiz.py
 ```
 
-You should see `Your MISA quiz starts here.` If the command fails, go to [troubleshooting](../help/) or use Colab below. Once it works, continue to [welcome the player](../build/welcome/).
+You should see `Hello, world!`
+
+</details>
+
+<details>
+<summary>macOS setup</summary>
+
+### 1. Install Homebrew, Python, Git, and VS Code
+
+Open **Terminal** from Applications → Utilities. [Homebrew](https://brew.sh/) lets you install the workshop tools from the command line. Run its official installer:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Read the prompts before confirming. When it finishes, Homebrew may print two **Next steps** commands for adding `brew` to your shell. Copy and run those commands before continuing.
+
+Install the three tools:
+
+```bash
+brew install python git
+brew install --cask visual-studio-code
+```
+
+### 2. Check the tools and add the Python extensions
+
+Close and reopen Terminal, then run:
+
+```bash
+python3 --version
+git --version
+code --version
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+```
+
+Python should report version 3.10 or newer. Git and VS Code should each print a version too.
+
+### 3. Download and open the workshop
+
+Run one command at a time. If you already cloned the repository, skip `git clone` and open your existing `misa-python-workshop` folder.
+
+```bash
+git clone https://github.com/yanicells/misa-python-workshop.git
+cd misa-python-workshop
+git checkout 00-start
+git checkout -b my-quiz
+cd workshop
+code .
+```
+
+`git clone` downloads the project. The two `checkout` commands load our starting point and create a personal branch named `my-quiz`. `cd` moves into a folder, and `code .` opens the current folder in VS Code.
+
+### 4. Select Python and run the starter
+
+In VS Code, press **Cmd+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Open **Terminal → New Terminal**, then run:
+
+```bash
+python3 quiz.py
+```
+
+You should see `Hello, world!`
+
+</details>
+
+The quiz uses only Python's standard library, so you do not need Python packages, Node.js, or the website dependencies. A [GitHub account](https://github.com/signup) is optional for the workshop. You only need one later if you want to publish your branch.
+
+If a command fails, go to [troubleshooting](../help/) or use Colab below.
 
 <Checkpoint id="00-start" />
 
@@ -121,3 +150,5 @@ git config user.email "YOUR_GITHUB_NOREPLY_EMAIL"
 ```
 
 Replace the email text with the private commit email from your [GitHub email settings](https://github.com/settings/emails), or an email you're comfortable using. These settings identify commits; they don't sign you in.
+
+[Continue to the workshop welcome →](../)
