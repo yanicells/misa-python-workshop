@@ -125,7 +125,7 @@ Still inside `show_results`, define the sorting function and order the clusters:
     print("Here are your top MISA cluster matches:")
 ```
 
-Then add the result loop. It handles the three score levels, counts ties, calculates the percentage, and prints each description:
+Then add the result loop. It handles the three score levels, calculates the percentage, and prints each description:
 
 ```python title="Continue show_results"
     for cluster in ordered_clusters:
@@ -137,18 +137,9 @@ Then add the result loop. It handles the three score levels, counts ties, calcul
         if rank > 3:
             break
 
-        tied_count = 0
-        for other_cluster in scores:
-            if scores[other_cluster] == points:
-                tied_count += 1
-
-        tie_label = ""
-        if tied_count > 1:
-            tie_label = " (tied)"
-
         percentage = points / total_points * 100
         print()
-        print(f"{rank}. {cluster}{tie_label} | {percentage:.1f}% of quiz points")
+        print(f"{rank}. {cluster} | {percentage:.1f}% of quiz points")
         print(CLUSTERS[cluster])
         previous_score = points
 ```

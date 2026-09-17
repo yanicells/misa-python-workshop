@@ -44,14 +44,6 @@ def show_results(name, scores):
         if rank > 3:
             break
 
-        tied_count = 0
-        for other_cluster in scores:
-            if scores[other_cluster] == points:
-                tied_count += 1
-        tie_label = ""
-        if tied_count > 1:
-            tie_label = " (tied)"
-
         percentage = points / total_points * 100
         display_name = CLUSTERS[cluster]["name"]
         description = CLUSTERS[cluster]["description"]
@@ -59,7 +51,7 @@ def show_results(name, scores):
         if display_name != cluster:
             display_label += " (" + cluster + ")"
         print()
-        print(f"{rank}. {display_label}{tie_label} | {percentage:.1f}% of quiz points")
+        print(f"{rank}. {display_label} | {percentage:.1f}% of quiz points")
         print(description)
         previous_score = points
 
