@@ -1,1 +1,1 @@
-print("Your MISA quiz starts here.")
+print("Hello, world!")
