@@ -98,20 +98,16 @@ if rank > 3:
 
 ## Build show_results in parts
 
-Add a new `show_results(scores)` function above `run_quiz()`. Start with the total and zero-score check:
+Add a new `show_results(scores)` function above `run_quiz()`. Start by finding the total:
 
 ```python title="Start show_results"
 def show_results(scores):
     total_points = 0
     for cluster in scores:
         total_points += scores[cluster]
-
-    if total_points == 0:
-        print("No points yet. Answer a question and try again.")
-        return
 ```
 
-An early `return` ends the function before any division happens when the total is zero.
+Every completed quiz awards points, so the total is ready for the percentage calculation below.
 
 Still inside `show_results`, define the sorting function and order the clusters:
 
