@@ -16,10 +16,6 @@ Instagram has described using Python and Django for its frontend server. Spotify
 
 In the 2024 Python Developers Survey, respondents reported using Python for web development, data analysis, machine learning, automation, research, and education. The same survey found that 48% used VS Code as their main editor. It surveyed more than 30,000 Python developers and learners from almost 200 countries and regions. [See the survey results](https://lp.jetbrains.com/python-developers-survey-2024/).
 
-## Compiled or interpreted?
-
-Compiled languages translate code before running it. Interpreted languages run code through an interpreter. Python is interpreted.
-
 ## What we will make
 
 Our Python program is a MISA cluster quiz. It will:
