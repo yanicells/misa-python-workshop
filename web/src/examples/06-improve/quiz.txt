@@ -90,5 +90,4 @@ def run_quiz():
     show_results(name, scores)
 
 
-if __name__ == "__main__":
-    run_quiz()
+run_quiz()

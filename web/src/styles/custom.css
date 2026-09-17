@@ -185,6 +185,8 @@ h3 {
   }
 
   [data-has-sidebar][data-has-toc] .main-pane {
+    /* Balance the article margins inside our expanded main pane. */
+    --sl-content-margin-inline: auto;
     width: calc(100% - var(--workshop-toc-width));
   }
 
