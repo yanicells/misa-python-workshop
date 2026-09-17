@@ -1,7 +1,7 @@
 [
   {
     "id": "00-start",
-    "lesson": "setup",
+    "lesson": "build/welcome",
     "files": ["quiz.py"],
     "run": "python3 quiz.py",
     "expected": "Hello, world!"
