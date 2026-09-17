@@ -10,10 +10,10 @@ export default defineConfig({
     components: { Footer: './src/components/Footer.astro' },
     sidebar: [
       { label: 'Before you begin', collapsed: false, items: [
+        {label:'Setup and Colab',slug:'setup'},
         {label:'Welcome',slug:''},
         {label:'What is Python?',slug:'python'},
-        {label:'Git and GitHub',slug:'git-github'},
-        {label:'Setup and Colab',slug:'setup'}
+        {label:'Git and GitHub',slug:'git-github'}
       ] },
       { label: 'Build your quiz', collapsed: false, items: [
         {label:'01 · Welcome the player',slug:'build/welcome'},

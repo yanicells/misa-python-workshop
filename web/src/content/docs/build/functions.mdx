@@ -131,14 +131,13 @@ def run_quiz():
 
 ## Start the program
 
-Add this at the bottom of the file:
+Add this call at the bottom of the file, with no indentation:
 
-```python title="Last two lines of workshop/quiz.py"
-if __name__ == "__main__":
-    run_quiz()
+```python title="Last line of workshop/quiz.py"
+run_quiz()
 ```
 
-When you run `quiz.py` directly, Python sets `__name__` to `"__main__"`, so this calls `run_quiz()`. If another file imports `quiz`, the function definitions load without starting the questions.
+Defining `run_quiz()` stores its instructions. This final line calls the function and starts the program.
 
 ## Run and check
 

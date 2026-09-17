@@ -4,7 +4,7 @@
     "lesson": "setup",
     "files": ["quiz.py"],
     "run": "python3 quiz.py",
-    "expected": "Your MISA quiz starts here."
+    "expected": "Hello, world!"
   },
   {
     "id": "01-welcome",
