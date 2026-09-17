@@ -1,9 +1,7 @@
 ---
 title: Start with setup
-description: Prepare your computer, get the project, and run your first Python program.
+description: Install the tools and prepare the workshop project before we begin.
 ---
-import Checkpoint from '../../components/Checkpoint.astro';
-
 Start here as soon as you arrive. Setup can take a few minutes, and getting it out of the way means we can keep coding once the workshop begins.
 
 Choose the section for your computer. Each one includes the full process, so you do not need to switch between Windows and macOS instructions. If you already installed a tool, its install command may tell you that it is already present.
@@ -50,15 +48,9 @@ code .
 
 `git clone` downloads the project. The two `checkout` commands load our starting point and create a personal branch named `my-quiz`. `cd` moves into a folder, and `code .` opens the current folder in VS Code.
 
-### 4. Select Python and run the starter
+### 4. Select Python in VS Code
 
-In VS Code, press **Ctrl+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Open **Terminal → New Terminal**, then run:
-
-```powershell
-py quiz.py
-```
-
-You should see `Hello, world!`
+In VS Code, press **Ctrl+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Once `workshop` is open and Python is selected, your local setup is ready.
 
 </details>
 
@@ -111,27 +103,20 @@ code .
 
 `git clone` downloads the project. The two `checkout` commands load our starting point and create a personal branch named `my-quiz`. `cd` moves into a folder, and `code .` opens the current folder in VS Code.
 
-### 4. Select Python and run the starter
+### 4. Select Python in VS Code
 
-In VS Code, press **Cmd+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Open **Terminal → New Terminal**, then run:
-
-```bash
-python3 quiz.py
-```
-
-You should see `Hello, world!`
+In VS Code, press **Cmd+Shift+P**, choose **Python: Select Interpreter**, and select the Python 3 version you checked earlier. Once `workshop` is open and Python is selected, your local setup is ready.
 
 </details>
 
 The quiz uses only Python's standard library, so you do not need Python packages, Node.js, or the website dependencies. A [GitHub account](https://github.com/signup) is optional for the workshop. You only need one later if you want to publish your branch.
 
-If a command fails, go to [troubleshooting](../help/) or use Colab below.
+If a command fails, go to [troubleshooting](../help/). You can also use the Colab fallback below.
 
-<Checkpoint id="00-start" />
+<details>
+<summary>Use Colab if local setup is not working</summary>
 
-## Use Colab if setup gets in the way
-
-[Open the workshop notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb).
+[Open the workshop notebook in Colab](https://colab.research.google.com/github/yanicells/misa-python-workshop/blob/06-improve/workshop/misa-quiz.ipynb) if the Windows or macOS setup is giving you trouble.
 
 1. Sign in to Google and choose **File → Save a copy in Drive**. Edit your copy.
 2. Read the cell marked `00-start`, then run its code cell using the play button or Shift+Enter.
@@ -139,6 +124,8 @@ If a command fails, go to [troubleshooting](../help/) or use Colab below.
 4. When a cell asks a question, type into its input box. Wait until it finishes before starting another cell.
 
 Colab runs Python on a hosted computer. You can make the same Python changes there, but you will skip local Git practice for now. The notebook includes the question data, so you do not need to upload files or install packages. Save the notebook to keep your edits. You can also download an `.ipynb` copy as a local backup.
+
+</details>
 
 ## If Git needs your name
 

@@ -1,20 +1,34 @@
 ---
 title: 01 · Welcome the player
-description: Learn values, variables, print, and input before adding a personal greeting.
+description: Say hello to the world, then learn values, variables, print, and input.
 ---
 import Checkpoint from '../../../components/Checkpoint.astro';
 
 This step adds a name prompt and personal greeting. Keep editing on `my-quiz`; use a checkpoint branch only when you need a working reference.
 
-## Start with Hello, world!
+## Say hello to the world
 
-Programmers often make `Hello, world!` their first program when learning a language. You already ran it during setup. Open `workshop/quiz.py` to see the one line behind it:
+Programmers have a small tradition when learning a new language: make the computer say `Hello, world!`.
+
+Open `workshop/quiz.py`. Your first Python program is already waiting there:
 
 ```python title="workshop/quiz.py"
 print("Hello, world!")
 ```
 
-`print()` displays the value inside its parentheses in the terminal. Here, that value is the text `"Hello, world!"`. Replace the text, save the file, and run it once more before moving on.
+`print()` tells Python to display the value inside its parentheses. Here, that value is the text `"Hello, world!"`.
+
+Open **Terminal → New Terminal** in VS Code. Run `python3 quiz.py` on macOS or `py quiz.py` on Windows. You should see:
+
+```text title="Your first output"
+Hello, world!
+```
+
+That was one line of code, and it made the computer speak. You just said hello to the world through Python. Welcome to programming!
+
+Change the message to something you would say, save the file, and run it again.
+
+<Checkpoint id="00-start" />
 
 ## Values and variables
 
